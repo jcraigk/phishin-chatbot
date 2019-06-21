@@ -1,0 +1,8 @@
+.bundle
+.env
+.DS_Store
+
+/coverage
+/log
+/tmp
+config/master.key

@@ -1,0 +1,28 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 2.6.3
+  Exclude:
+    - bin/**/*
+    - config/**/*
+    - spec/support/**/*
+    - vendor/**/*
+    - lib/tasks/*
+
+Documentation:
+  Enabled: false
+Layout/EmptyLineAfterMagicComment:
+  Enabled: false
+Layout/EmptyLineAfterGuardClause:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+Metrics/LineLength:
+  Max: 100
+
+RSpec/LetSetup:
+  Enabled: false
+RSpec/MultipleExpectations:
+  Enabled: false
