@@ -4,8 +4,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
+gem 'bulma-rails'
 gem 'puma'
 gem 'rails'
+gem 'sass-rails'
 gem 'sentry-raven'
 gem 'slim'
 
