@@ -5,6 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.3'
 
 gem 'bulma-rails'
+gem 'discordrb'
 gem 'http'
 gem 'puma'
 gem 'rails'

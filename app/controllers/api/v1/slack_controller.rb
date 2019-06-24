@@ -45,6 +45,9 @@ class Api::V1::SlackController < Api::ApiController
     params.dig('event', 'type') == 'app_mention'
   end
 
+  # TODO: to prevent double-post, don't include direct messages that include bot name
+  # so "@phishin 1995-10-31" should be ignored since it gets picked up by app_mention event
+  # instead, only listen for "1995-10-31"
   def direct_message?
     params.dig('event', 'channel_type') == 'im' &&
       params.dig('event', 'subtype') != 'bot_message'

@@ -7,3 +7,8 @@ services:
       - 3000:3000
     tty: true
     stdin_open: true
+  discord_websocket:
+    build: .
+    environment:
+      IS_DISCORD_WEBSOCKET: 'true'
+      PORT: 4000

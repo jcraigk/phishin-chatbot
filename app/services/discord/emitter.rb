@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-# https://api.slack.com/methods/chat.postMessage
-class Slack::Emitter
-  BASE_URL = 'https://slack.com/api/chat.postMessage'
+# https://discordapp.com/developers/docs/resources/channel#create-message
+class Discord::Emitter
+  BASE_URL = 'https://discordapp.com/api/v6'
 
   attr_reader :channel, :text
 
@@ -22,7 +22,12 @@ class Slack::Emitter
 
   private
 
+  def url
+    "#{BASE_URL}/channels/#{channel}/messages"
+  end
+
   def emit
-    HTTP.auth("Bearer #{ENV['SLACK_BOT_TOKEN']}").post(BASE_URL, json: { channel: channel, text: text })
+    binding.pry
+    HTTP.auth("Bot #{ENV['DISCORD_BOT_TOKEN']}").post(url, json: { content: text })
   end
 end
