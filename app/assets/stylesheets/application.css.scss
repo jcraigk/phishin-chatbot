@@ -1,7 +1,19 @@
 @import "bulma";
 
-.dashboard {
+body {
   font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.dashboard {
   font-size: 26px;
-  width: 750px;
+  width: 1050px;
+  text-align: center;
+}
+
+.command-table {
+  font-size: 18px;
+
+  .command-col {
+    width: 300px;
+  }
 }

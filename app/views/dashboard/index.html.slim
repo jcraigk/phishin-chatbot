@@ -11,6 +11,34 @@
 
     br
     br
+
+    table.table.command-table
+      thead
+        tr
+          th Chat Command
+          th Examples
+          th Description
+      tbody
+        tr
+          td.command-col yyyy-mm-dd [details,direct]
+          td
+            | @phishin 2014-10-31
+            br
+            | @phishin 1996-12-31 details
+            br
+            | @phishin 1995-10-31 direct
+          td
+            | Providing a date returns setlist/info
+            ul
+              li
+                i> details
+                | - display more details about the show
+              li
+                i> direct
+                | - link directly to MP3s instead of Phish.in website UI
+
+    br
+    br
     a href="https://slack.com/oauth/authorize?scope=bot&client_id=#{ENV['SLACK_CLIENT_ID']}" Add to Discord
 
     br
