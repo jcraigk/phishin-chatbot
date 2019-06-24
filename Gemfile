@@ -5,6 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.3'
 
 gem 'bulma-rails'
+gem 'http'
 gem 'puma'
 gem 'rails'
 gem 'sass-rails'
@@ -19,6 +20,7 @@ end
 
 group :development, :test do
   gem 'awesome_print'
+  gem 'dotenv-rails'
   gem 'pry-rails'
 end
 
