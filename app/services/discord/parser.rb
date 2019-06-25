@@ -2,6 +2,8 @@
 class Discord::Parser
   attr_reader :event
 
+  CHATBOT_REGEX = /\A<@\d+>/.freeze
+
   def initialize(event)
     @event = event
   end
@@ -18,6 +20,6 @@ class Discord::Parser
 
   # Extract "hi there" from "<@592570302473169665> hi there"
   def extract_message
-    event.message.content.gsub(/\A<@\d+> /, '')
+    event.message.content.gsub(CHATBOT_REGEX, '').strip
   end
 end

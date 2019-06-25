@@ -27,7 +27,6 @@ class Discord::Emitter
   end
 
   def emit
-    binding.pry
     HTTP.auth("Bot #{ENV['DISCORD_BOT_TOKEN']}").post(url, json: { content: text })
   end
 end
