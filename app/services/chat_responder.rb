@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class ChatCommandRouter
+class ChatResponder
   attr_reader :platform, :command
 
   def initialize(platform, command)
@@ -12,7 +12,7 @@ class ChatCommandRouter
   end
 
   def call
-    responder.send(platform)
+    responder.call(platform)
   end
 
   private

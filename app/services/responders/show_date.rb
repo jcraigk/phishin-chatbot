@@ -7,12 +7,8 @@ class Responders::ShowDate
     @options = options
   end
 
-  def discord
-    "DISCORD #{data[:date]} @ #{data[:venue][:name]}"
-  end
-
-  def slack
-    "SLACK #{data[:date]} @ #{data[:venue][:name]}"
+  def call(platform)
+    "#{platform} => #{data[:date]} @ #{data[:venue][:name]}"
   end
 
   private

@@ -13,7 +13,7 @@ class Api::V1::SlackController < Api::ApiController
   end
 
   def slack_app_mention?
-    phishin_app? && relevant_event? && chat_command.present?
+    phishin_app? && relevant_event? && command.present?
   end
 
   def event_channel
@@ -21,12 +21,12 @@ class Api::V1::SlackController < Api::ApiController
   end
 
   # Extract "hi there" from "<@BOTUSERXYZ> hi there"
-  def chat_command
-    @chat_command ||= params.dig('event', 'text').gsub(/\A<\@[A-Z0-9]{5,20}> /, '')
+  def command
+    @command ||= params.dig('event', 'text').gsub(/\A<\@[A-Z0-9]{5,20}> /, '')
   end
 
   def response_message
-    ChatCommandRouter.call(:slack, chat_command)
+    ChatResponder.call(:slack, command)
   end
 
   def relevant_event?
