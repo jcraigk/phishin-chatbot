@@ -23,7 +23,7 @@ class Phishin::Client
 
   def fetch_data
     Rails.cache.fetch(url, expires_in: CACHE_TTL) do
-      JSON[http_get.body].deep_symbolize_keys[:data]
+      JSON.parse(http_get.body, object_class: OpenStruct).data
     end
   end
 

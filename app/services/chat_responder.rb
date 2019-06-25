@@ -19,7 +19,7 @@ class ChatResponder
 
   def responder
     if command =~ /\A(\d{4}\-\d{1,2}\-\d{1,2})( .+)?\z/ # 1995-10-31
-      ::Responders::ShowDate.new(date: Regexp.last_match[1], options: Regexp.last_match[2]&.strip)
+      ::Responders::ShowDate.new(date: Regexp.last_match[1], args: Regexp.last_match[2]&.strip)
     else
       ::Responders::Naive.new
     end
