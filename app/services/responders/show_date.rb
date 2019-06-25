@@ -14,6 +14,6 @@ class Responders::ShowDate
   private
 
   def data
-    @data ||= PhishinClient.call("shows/#{date}")
+    @data ||= Phishin::Client.call("shows/#{date}")
   end
 end

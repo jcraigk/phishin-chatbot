@@ -3,8 +3,8 @@ if ENV['DISCORD_WEBSOCKET'].present?
 
   bot = Discordrb::Bot.new(token: ENV['DISCORD_BOT_TOKEN'])
   bot.message do |event|
-    # Extract "hi there" from "<@592570302473169665> hi there"
-    event.respond(ChatResponder.call(:discord, event.message.content.gsub(/\A<@\d+> /, '')))
+    chat_command = Discord::EventParser.call(event)
+    event.respond(ChatResponder.call(:discord, chat_command)) if chat_message
   end
 
   bot.run

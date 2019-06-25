@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class PhishinClient
+class Phishin::Client
   BASE_URL = 'https://phish.in/api/v1'
   PARAMS = 'page=1&per_page=10000'
   TIMEOUT = 10
