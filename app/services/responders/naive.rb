@@ -8,15 +8,11 @@ class Responders::Naive
   ].freeze
 
   def call(platform)
-    formatted_phrase(platform)
-  end
-
-  private
-
-  def formatted_phrase(platform)
     return random_phrase if platform == :slack
     slack_to_discord(random_phrase)
   end
+
+  private
 
   def random_phrase
     @random_phrase ||= PHRASES.sample
