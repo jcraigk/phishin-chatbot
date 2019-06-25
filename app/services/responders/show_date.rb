@@ -6,33 +6,32 @@ class Responders::ShowDate
 
   def initialize(date:, args:)
     @date = date
-    @options = args.present? ? args.split(' ') : []
+    @options = args.present? ? args.split(',') : []
   end
 
   def call(platform)
     return 'The banker said *"I ain\'t got that"*' unless data
-    response_text = options.include?('detail') ? long_response : short_response
+    response = options.include?('detail') ? detailed_response : brief_response
 
-    return response_text if platform == :slack
-    slack_to_discord(response_text)
+    return response if platform == :slack
+    slack_to_discord(response)
   end
 
   private
 
-  def short_response
+  def brief_response
     return @str if @str
 
-    @str = "*#{pretty_date}*  #{data.venue_name} in #{location}\n"
+    @str = "*#{pretty_date}*"
+    @str += options.include?('tall') ? "\n" : ' @ '
+    @str += "*#{data.venue_name}*\n"
     @str += "*This show is incomplete*\n" if data.incomplete
-    @str += sets.map do |set, tracks|
-      setlist = tracks.map(&:title).join(', ')
-      "*#{set_name(set)}:*  #{setlist}"
-    end.join("\n")
+    @str += full_setlist
 
     @str
   end
 
-  def long_response
+  def detailed_response
     return @str if @str
 
     @str = "*#{pretty_date}*\n"
@@ -40,16 +39,29 @@ class Responders::ShowDate
     @str += "*This show is incomplete*\n" if data.incomplete
     @str += "*Duration:* #{show_duration}\n"
     @str += "*Tags:* #{stacked_tag_names}\n" if combined_tag_names.any?
-    @str += "#{web_link}\n"
+    @str += "*Stream Audio:* #{web_link}\n\n"
 
-    sets.each do |set, tracks|
-      @str += "\n*#{set_name(set)}*  (#{set_duration(tracks)})\n"
-      tracks.each_with_index do |track, idx|
-        @str += "#{idx + 1}. #{track.title}\n"
-      end
-    end
+    @str += full_setlist
 
     @str
+  end
+
+  def full_setlist
+    str = ''
+    sets.each do |set, tracks|
+      if options.include?('tall')
+        str += "\n*#{set_name(set)}*"
+        str += "  (#{set_duration(tracks)})" if options.include?('detail')
+        str += "\n"
+        tracks.each_with_index do |track, idx|
+          str += "#{idx + 1}. #{track.title}\n"
+        end
+      else
+        setlist = tracks.map(&:title).join(', ')
+        str += "*#{set_name(set)}:*  #{setlist}\n"
+      end
+    end
+    str
   end
 
   def stacked_tag_names
