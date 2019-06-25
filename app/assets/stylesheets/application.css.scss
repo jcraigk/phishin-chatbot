@@ -8,12 +8,41 @@ body {
   font-size: 26px;
   width: 1050px;
   text-align: center;
-}
 
-.command-table {
-  font-size: 18px;
+  h1 {
+    font-weight: bold;
+  }
 
-  .command-col {
-    width: 300px;
+  sup {
+    font-size: 12px;
+  }
+
+  .command-table {
+    font-size: 18px;
+
+    .command-cell {
+      width: 300px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+  }
+  
+  .inline {
+    display: inline;
+  }
+
+  .chat_buttons {
+    vertical-align: middle;
+    margin-top: 30px;
+
+    .slack_btn {
+      margin-right: 20px;
+    }
+    .discord_btn {
+      position: relative;
+      top: 6px;
+      font-family: "Helvetica";
+      font-size: 18px;
+    }
   }
 }

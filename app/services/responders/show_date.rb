@@ -11,7 +11,7 @@ class Responders::ShowDate
 
   def call(platform)
     return 'The banker said *"I ain\'t got that"*' unless data
-    response = options.include?('detail') ? detailed_response : brief_response
+    response = options.include?('more') ? detailed_response : brief_response
 
     return response if platform == :slack
     slack_to_discord(response)
@@ -23,7 +23,7 @@ class Responders::ShowDate
     return @str if @str
 
     @str = "*#{pretty_date}*"
-    @str += options.include?('tall') ? "\n" : ' @ '
+    @str += options.include?('lengthwise') ? "\n" : ' @ '
     @str += "*#{data.venue_name}*\n"
     @str += "*This show is incomplete*\n" if data.incomplete
     @str += full_setlist
@@ -49,9 +49,9 @@ class Responders::ShowDate
   def full_setlist
     str = ''
     sets.each do |set, tracks|
-      if options.include?('tall')
+      if options.include?('lengthwise')
         str += "\n*#{set_name(set)}*"
-        str += "  (#{set_duration(tracks)})" if options.include?('detail')
+        str += "  (#{set_duration(tracks)})" if options.include?('more')
         str += "\n"
         tracks.each_with_index do |track, idx|
           str += "#{idx + 1}. #{track.title}\n"

@@ -18,10 +18,20 @@ class ChatResponder
   private
 
   def responder
-    if command =~ /\A(\d{4}\-\d{1,2}\-\d{1,2})( .+)?\z/ # 1995-10-31
-      ::Responders::ShowDate.new(date: Regexp.last_match[1], args: Regexp.last_match[2]&.strip)
+    if parsable_date
+      ::Responders::ShowDate.new(date: parsable_date, args: last_word)
     else
       ::Responders::Naive.new
     end
+  end
+
+  def parsable_date
+    Date.parse(command)
+  rescue ArgumentError
+    false
+  end
+
+  def last_word
+    command.split(' ').last
   end
 end
