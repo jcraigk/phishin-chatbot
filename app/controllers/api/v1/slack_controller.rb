@@ -25,12 +25,8 @@ class Api::V1::SlackController < Api::ApiController
     @chat_command ||= params.dig('event', 'text').gsub(/\A<\@[A-Z0-9]{5,20}> /, '')
   end
 
-  def show_data
-    @show_data ||= Phishin::Request.call("shows/#{chat_command}")
-  end
-
   def response_message
-    "#{show_data[:date]} @ #{show_data[:venue][:name]}"
+    ChatCommandRouter.call(:slack, chat_command)
   end
 
   def relevant_event?

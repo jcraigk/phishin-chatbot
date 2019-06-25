@@ -11,13 +11,13 @@ class Slack::Emitter
     @text = text
   end
 
+  def self.call(channel, text)
+    new(channel, text).call
+  end
+
   def call
     Rails.logger.debug("SLACK: Emitting to #{channel} => #{text}")
     emit
-  end
-
-  def self.call(channel, text)
-    new(channel, text).call
   end
 
   private
