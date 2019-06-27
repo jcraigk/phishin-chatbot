@@ -5,7 +5,3 @@ services:
     build: .
     ports:
       - 3000:3000
-  discord_websocket:
-    build: .
-    environment:
-      DISCORD_WEBSOCKET: 'true'
