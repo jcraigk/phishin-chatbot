@@ -16,18 +16,23 @@ ActiveRecord::Schema.define(version: 2019_07_01_180724) do
   enable_extension "plpgsql"
 
   create_table "teams", force: :cascade do |t|
-    t.string "team_id"
-    t.string "name"
+    t.integer "platform", default: 0, null: false
+    t.string "team_id", null: false
+    t.string "name", null: false
     t.string "domain"
     t.string "bot_user_id"
-    t.string "bot_token"
+    t.string "bot_token", null: false
     t.string "user_id"
     t.string "user_token"
-    t.boolean "active", default: true
+    t.boolean "active", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["bot_token"], name: "index_teams_on_bot_token", unique: true
+    t.index ["bot_user_id"], name: "index_teams_on_bot_user_id", unique: true
     t.index ["name"], name: "index_teams_on_name"
     t.index ["team_id"], name: "index_teams_on_team_id", unique: true
+    t.index ["user_id"], name: "index_teams_on_user_id", unique: true
+    t.index ["user_token"], name: "index_teams_on_user_token", unique: true
   end
 
 end
