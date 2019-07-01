@@ -5,3 +5,20 @@ services:
     build: .
     ports:
       - 3000:3000
+  pg:
+    image: postgres:10.5
+    ports:
+      - 5432:5432
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+  redis:
+    image: redis:4.0-alpine
+    volumes:
+      - redis_data:/data
+
+volumes:
+  pg_data:
+  redis_data:
