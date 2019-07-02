@@ -1,10 +1,11 @@
 @import "bulma";
+@import "font-awesome";
 
 body {
   font-family: 'Open Sans Condensed', sans-serif;
 }
 
-.dashboard {
+.main {
   font-size: 26px;
   width: 1050px;
   text-align: center;
@@ -26,7 +27,7 @@ body {
       font-weight: bold;
     }
   }
-  
+
   .inline {
     display: inline;
   }
@@ -44,5 +45,11 @@ body {
       font-family: "Helvetica";
       font-size: 18px;
     }
+  }
+
+  .big-checkmark {
+    font-size: 150px;
+    color: #0c7c3c;
+    margin-bottom: 20px;
   }
 }

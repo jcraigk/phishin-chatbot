@@ -1,155 +1,149 @@
-.section
-  .container.has-text-centered
-    img src='https://i.imgur.com/mxOqj0B.png'
+p
+' Welcome to the home of the official
+a href='https://github.com/jcraigk/phishin-chatbot' Phish.in' chatbot
+' , a frontend for the
+a> href='https://phish.in' Phish.in
+| web service.
 
-  .container.dashboard
-    br
-    p
-    ' Welcome to the home of the official
-    a href='https://github.com/jcraigk/phishin-chatbot' Phish.in' chatbot
-    ' , a frontend for the
-    a> href='https://phish.in' Phish.in
-    | web service.
+br
 
-    br
+.chat_buttons
+  a.inline.slack_btn href="https://slack.com/oauth/authorize?scope=bot,chat:write:bot&client_id=#{ENV['SLACK_CLIENT_ID']}&redirect_uri=#{ENV['SLACK_REDIRECT_URI']}"
+    img alt='Add to Slack' height='40' width='139' src='https://platform.slack-edge.com/img/add_to_slack.png' srcset='https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x'
 
-    .chat_buttons
-      a.inline.slack_btn href="https://slack.com/oauth/authorize?scope=bot,chat:write:bot&client_id=#{ENV['SLACK_CLIENT_ID']}&redirect_uri=#{ENV['SLACK_REDIRECT_URI']}"
-        img alt='Add to Slack' height='40' width='139' src='https://platform.slack-edge.com/img/add_to_slack.png' srcset='https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x'
+  a.inline.button.discord_btn href="https://discordapp.com/api/oauth2/authorize?permissions=2048&scope=bot&client_id=#{ENV['DISCORD_CLIENT_ID']}&response_type=code&redirect_uri=#{ENV['DISCORD_REDIRECT_URI']}" Add to Discord
 
-      a.inline.button.discord_btn href="https://discordapp.com/api/oauth2/authorize?permissions=2048&scope=bot&client_id=#{ENV['DISCORD_CLIENT_ID']}&response_type=code&redirect_uri=#{ENV['DISCORD_REDIRECT_URI']}" Add to Discord
+br
 
-    br
+h1 Implemented Commands
 
-    h1 Implemented Commands
+table.table.command-table
+  thead
+    tr
+      th Chat Command
+      th Examples
+      th Description
+  tbody
+    tr
+      td.command-cell
+        | {date} [more[,lengthwise]]
+      td[nowrap]
+        | Oct 31, 2014
+        br
+        | 1996-12-31 more
+        br
+        | December 31 1996 lengthwise,more
+      td
+        | Providing a date in any parsable form returns info about the show, including full setlist.
+        ul
+          li
+            i> more
+            | - display more metadata about the show
+          li
+            i> lengthwise
+            | - display the setlist in vertical enumerated style
 
-    table.table.command-table
-      thead
-        tr
-          th Chat Command
-          th Examples
-          th Description
-      tbody
-        tr
-          td.command-cell
-            | {date} [more[,lengthwise]]
-          td[nowrap]
-            | Oct 31, 2014
-            br
-            | 1996-12-31 more
-            br
-            | December 31 1996 lengthwise,more
-          td
-            | Providing a date in any parsable form returns info about the show, including full setlist.
-            ul
-              li
-                i> more
-                | - display more metadata about the show
-              li
-                i> lengthwise
-                | - display the setlist in vertical enumerated style
+br
 
-    br
+h1
+ | Commands Coming Soon
+ sup TM
 
-    h1
-     | Commands Coming Soon
-     sup TM
-
-    table.table.command-table
-      thead
-        tr
-          th Chat Command
-          th Examples
-          th Description
-      tbody
-        tr
-          td.command-cell
-            | song {song}
-          td
-            | song Harry Hood
-            br
-            | song you-enjoy-myself
-          td
-            | Providing the keyword `song` followed by a song title or slug returns details about the song.
-        tr
-          td.command-cell
-            | jam [{song}]
-          td[nowrap]
-            | jam
-            br
-            | jam Harry Hood
-            br
-            | jam you-enjoy-myself
-          td
-            | Providing the keyword `jam` returns a link to a random Jamchart track, timstamped to jam start time if available.  Adding a song title or slug constrains the selection.
-        tr
-          td.command-cell
-            | top {x} shows|tracks
-          td[nowrap]
-            | top 5 shows
-            br
-            | top 10 tracks
-          td
-            | Providing the keyword `top` followed by an integer and either `shows` or `tracks` will return the specified number of most-liked entities.
-        tr
-          td.command-cell
-            | {year}
-          td[nowrap]
-            | 1995
-            br
-            | 2010
-          td
-            | Providing only a year returns stats about the year.
-        tr
-          td.command-cell
-            | search {term}
-          td[nowrap]
-            | search wolfman
-            br
-            | search Madison Square Garden
-          td
-            | Providing the keyword `search` followed by a search phrase returns general search results.
-        tr
-          td.command-cell
-            | tag {tag}
-          td[nowrap]
-            | tag Jamcharts
-            br
-            | tag Alt Lyric
-            br
-            | tag alt-lyric
-          td
-            | Providing the keyword `tag` followed by the name or slug of a tag returns data and links associated with the tag.
-        tr
-          td.command-cell
-            | recent|last|latest
-          td[nowrap]
-            | recent
-            br
-            | last
-            br
-            | latest
-          td
-            | Providing the keyword `recent` provides info from the latest show.
-        tr
-          td.command-cell
-            | random [show|set|soundcheck|set 1|set 2|set 3|encore|{song}]
-          td[nowrap]
-            | random
-            br
-            | random set
-            br
-            | random encore
-          td
-            | Providing the keyword `random` followed by another keyword will return a random selection.
-        tr
-          td.command-cell
-            | venue {venue}
-          td[nowrap]
-            | venue Deer Creek
-            br
-            | venue madison-square-garden
-            br
-            | venue msg
-          td
-            | Providing the keyword `venue` followed by the name, abbreviation, past name, or slug of a venue returns info on the venue.
+table.table.command-table
+  thead
+    tr
+      th Chat Command
+      th Examples
+      th Description
+  tbody
+    tr
+      td.command-cell
+        | song {song}
+      td
+        | song Harry Hood
+        br
+        | song you-enjoy-myself
+      td
+        | Providing the keyword `song` followed by a song title or slug returns details about the song.
+    tr
+      td.command-cell
+        | jam [{song}]
+      td[nowrap]
+        | jam
+        br
+        | jam Harry Hood
+        br
+        | jam you-enjoy-myself
+      td
+        | Providing the keyword `jam` returns a link to a random Jamchart track, timstamped to jam start time if available.  Adding a song title or slug constrains the selection.
+    tr
+      td.command-cell
+        | top {x} shows|tracks
+      td[nowrap]
+        | top 5 shows
+        br
+        | top 10 tracks
+      td
+        | Providing the keyword `top` followed by an integer and either `shows` or `tracks` will return the specified number of most-liked entities.
+    tr
+      td.command-cell
+        | {year}
+      td[nowrap]
+        | 1995
+        br
+        | 2010
+      td
+        | Providing only a year returns stats about the year.
+    tr
+      td.command-cell
+        | search {term}
+      td[nowrap]
+        | search wolfman
+        br
+        | search Madison Square Garden
+      td
+        | Providing the keyword `search` followed by a search phrase returns general search results.
+    tr
+      td.command-cell
+        | tag {tag}
+      td[nowrap]
+        | tag Jamcharts
+        br
+        | tag Alt Lyric
+        br
+        | tag alt-lyric
+      td
+        | Providing the keyword `tag` followed by the name or slug of a tag returns data and links associated with the tag.
+    tr
+      td.command-cell
+        | recent|last|latest
+      td[nowrap]
+        | recent
+        br
+        | last
+        br
+        | latest
+      td
+        | Providing the keyword `recent` provides info from the latest show.
+    tr
+      td.command-cell
+        | random [show|set|soundcheck|set 1|set 2|set 3|encore|{song}]
+      td[nowrap]
+        | random
+        br
+        | random set
+        br
+        | random encore
+      td
+        | Providing the keyword `random` followed by another keyword will return a random selection.
+    tr
+      td.command-cell
+        | venue {venue}
+      td[nowrap]
+        | venue Deer Creek
+        br
+        | venue madison-square-garden
+        br
+        | venue msg
+      td
+        | Providing the keyword `venue` followed by the name, abbreviation, past name, or slug of a venue returns info on the venue.

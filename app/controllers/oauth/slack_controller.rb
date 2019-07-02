@@ -6,11 +6,11 @@ class Oauth::SlackController < ApplicationController
     TeamRegistrar.call(
       platform: :slack,
       id: oauth_data[:team_id],
-      name: oauth_data[:team_name],
+      name: team_name,
       token: oauth_data[:bot][:bot_access_token]
     )
 
-    redirect_to success_path(platform: :slack)
+    redirect_to success_path(platform: :slack, team: team_name)
   end
 
   private
@@ -22,5 +22,9 @@ class Oauth::SlackController < ApplicationController
         client_secret: ENV['SLACK_CLIENT_SECRET'],
         code: params[:code]
       ).deep_symbolize_keys
+  end
+
+  def team_name
+    @team_name ||= oauth_data[:team_name]
   end
 end

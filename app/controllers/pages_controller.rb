@@ -4,5 +4,6 @@ class PagesController < ApplicationController
 
   def success
     @platform = params[:platform].titleize
+    @team = params[:team]
   end
 end

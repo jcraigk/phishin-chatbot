@@ -6,13 +6,13 @@ class Oauth::DiscordController < ApplicationController
     TeamRegistrar.call(
       platform: :discord,
       id: oauth_data[:guild][:id],
-      name: oauth_data[:guild][:name],
+      name: team_name,
       token: oauth_data[:access_token],
       token_expires_at: token_expires_at,
       refresh_token: oauth_data[:refresh_token]
     )
 
-    redirect_to success_path(platform: :discord)
+    redirect_to success_path(platform: :discord, team: team_name)
   end
 
   private
@@ -38,5 +38,9 @@ class Oauth::DiscordController < ApplicationController
 
   def token_expires_at
     Time.current + oauth_data[:expires_in].to_i.seconds
+  end
+
+  def team_name
+    @team_name ||= oauth_data[:guild][:name]
   end
 end
