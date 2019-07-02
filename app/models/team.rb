@@ -5,10 +5,7 @@ class Team < ApplicationRecord
     discord: 1
   }
 
-  validates :bot_token, presence: true, uniqueness: { scope: :platform }
-  validates :bot_user_id, presence: true, uniqueness: { scope: :platform }
+  validates :remote_id, presence: true, uniqueness: { scope: :platform }
   validates :name, presence: true, uniqueness: { scope: :platform }
-  validates :team_id, presence: true, uniqueness: { scope: :platform }
-  validates :user_id, presence: true, uniqueness: { scope: :platform }
-  validates :user_token, presence: true, uniqueness: { scope: :platform }
+  validates :token, presence: true, uniqueness: { scope: :platform }
 end

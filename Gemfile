@@ -13,7 +13,6 @@ gem 'puma'
 gem 'rails'
 gem 'sass-rails'
 gem 'sentry-raven'
-gem 'sentry-raven'
 gem 'slack-ruby-client'
 gem 'slim'
 

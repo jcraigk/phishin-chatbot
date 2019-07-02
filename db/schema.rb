@@ -17,22 +17,17 @@ ActiveRecord::Schema.define(version: 2019_07_01_180724) do
 
   create_table "teams", force: :cascade do |t|
     t.integer "platform", default: 0, null: false
-    t.string "team_id", null: false
+    t.string "remote_id", null: false
     t.string "name", null: false
-    t.string "domain"
-    t.string "bot_user_id"
-    t.string "bot_token", null: false
-    t.string "user_id"
-    t.string "user_token"
+    t.string "token", null: false
+    t.datetime "token_expires_at"
+    t.string "refresh_token"
     t.boolean "active", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["bot_token"], name: "index_teams_on_bot_token", unique: true
-    t.index ["bot_user_id"], name: "index_teams_on_bot_user_id", unique: true
-    t.index ["name"], name: "index_teams_on_name"
-    t.index ["team_id"], name: "index_teams_on_team_id", unique: true
-    t.index ["user_id"], name: "index_teams_on_user_id", unique: true
-    t.index ["user_token"], name: "index_teams_on_user_token", unique: true
+    t.index ["name", "platform"], name: "index_teams_on_name_and_platform", unique: true
+    t.index ["remote_id", "platform"], name: "index_teams_on_remote_id_and_platform", unique: true
+    t.index ["token", "platform"], name: "index_teams_on_token_and_platform", unique: true
   end
 
 end
