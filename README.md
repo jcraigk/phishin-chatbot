@@ -7,3 +7,11 @@ The Phish.in' Chatbot is another way to interact with the [Phish.in' API](https:
 The production instance of this chatbot is hosted at [chatbot.phish.in](https://chatbot.phish.in), which will eventually provide a means of integrating with your team's Slack or Discord.
 
 Join the [Discord](https://discord.gg/KZWFsNN) to discuss development.
+
+# TODO development section about registering bots and .env file and serveo
+
+The following cron job should be setup on the server (here, `INACTIVE_SECONDS` is set to 2 weeks):
+
+```
+INACTIVE_SECONDS=1_209_600 rails teams:disable_inactive
+```

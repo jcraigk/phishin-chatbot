@@ -7,7 +7,7 @@ ENV APP_NAME=${APP_NAME} \
     IN_DOCKER=true
 
 RUN apt-get update -qq && \
-    apt-get install -y build-essential nodejs memcached && \
+    apt-get install -y build-essential libpq-dev nodejs memcached && \
     apt-get clean
 
 # Bundle install, copy app

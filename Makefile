@@ -1,4 +1,4 @@
-.PHONY : build clean spec start stop up
+.PHONY : build clean spec start stop up services
 
 all : build up
 
@@ -10,6 +10,9 @@ clean :
 	docker-compose rm
 	docker image prune
 	docker volume prune
+
+services :
+	docker-compose up -d pg redis
 
 spec :
 	RAILS_ENV=test docker-compose run --rm app rspec $(file)

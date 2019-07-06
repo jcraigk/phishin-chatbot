@@ -1,9 +1,17 @@
 doctype html
 html
   head
+    meta name='slack-app-id' content="#{ENV['SLACK_APP_ID']}"
     title Phish.in Chatbot
     link href='https://fonts.googleapis.com/css?family=Marck+Script|Open+Sans+Condensed:300,700|Molle' rel='stylesheet' type='text/css'
     = stylesheet_link_tag 'application', media: :all
     = csrf_meta_tags
 
-    = yield
+body
+  .section
+    .container.has-text-centered
+      img src='https://i.imgur.com/mxOqj0B.png'
+    .container.main
+      br
+
+      = yield

@@ -1,7 +1,54 @@
 @import "bulma";
+@import "font-awesome";
 
-.dashboard {
+body {
   font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.main {
   font-size: 26px;
-  width: 750px;
+  width: 1050px;
+  text-align: center;
+
+  h1 {
+    font-weight: bold;
+  }
+
+  sup {
+    font-size: 12px;
+  }
+
+  .command-table {
+    font-size: 18px;
+
+    .command-cell {
+      width: 300px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+  }
+
+  .inline {
+    display: inline;
+  }
+
+  .chat_buttons {
+    vertical-align: middle;
+    margin-top: 30px;
+
+    .slack_btn {
+      margin-right: 20px;
+    }
+    .discord_btn {
+      font-family: "Helvetica";
+      font-size: 15px;
+      height: 40px;
+    }
+  }
+
+  .big-checkmark {
+    font-size: 150px;
+    color: #0c7c3c;
+    margin-bottom: 20px;
+  }
 }
