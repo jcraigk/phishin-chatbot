@@ -5,6 +5,7 @@ class CreateTeams < ActiveRecord::Migration[5.2]
       t.integer :platform, null: false, default: 0
       t.string :remote_id, null: false
       t.string :name, null: false
+      t.string :bot_user_id
       t.string :token, null: false
       t.datetime :token_expires_at
       t.string :refresh_token

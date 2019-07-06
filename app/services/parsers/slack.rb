@@ -1,15 +1,14 @@
 # frozen_string_literal: true
-class Slack::Parser
-  attr_reader :data
+class Parsers::Slack
+  attr_reader :data, :bot_user_id
 
-  CHATBOT_REGEX = /\A<@[A-Z0-9]+>/.freeze
-
-  def initialize(data)
+  def initialize(data, bot_user_id)
     @data = data
+    @bot_user_id = bot_user_id
   end
 
-  def self.call(data)
-    new(data).call
+  def self.call(data, bot_user_id)
+    new(data, bot_user_id).call
   end
 
   def call
@@ -19,12 +18,16 @@ class Slack::Parser
 
   private
 
+  def chatbot_regex
+    /\A@#{bot_user_id} /
+  end
+
   def relevant_message?
     prefixed_with_bot_mention? && command.present?
   end
 
   def prefixed_with_bot_mention?
-    text.match?(CHATBOT_REGEX)
+    text.match?(chatbot_regex)
   end
 
   def text
@@ -33,7 +36,7 @@ class Slack::Parser
 
   # Extract "hi there" from "<@BOTUSERXYZ> hi there"
   def command
-    @command ||= text.gsub(CHATBOT_REGEX, '').strip
+    @command ||= text.gsub(chatbot_regex, '').strip
   end
 
 
@@ -51,15 +54,15 @@ class Slack::Parser
 
   # To prevent double responses, ignore direct messages prefixed with chatbot mention
   # since such a message's `app_mention` event will trigger a separate response
-  def relevant_direct_message?
-    direct_message? && !message_from_bot? #&& !prefixed_with_bot_mention?
-  end
-
-  def message_from_bot?
-    data.subtype == 'bot_message'
-  end
-
-  def direct_message?
-    data.dig('event', 'channel_type') == 'im'
-  end
+  # def relevant_direct_message?
+  #   direct_message? && !message_from_bot? #&& !prefixed_with_bot_mention?
+  # end
+  #
+  # def message_from_bot?
+  #   data.subtype == 'bot_message'
+  # end
+  #
+  # def direct_message?
+  #   data.dig('event', 'channel_type') == 'im'
+  # end
 end

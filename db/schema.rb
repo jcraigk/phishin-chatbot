@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2019_07_01_180724) do
     t.integer "platform", default: 0, null: false
     t.string "remote_id", null: false
     t.string "name", null: false
+    t.string "bot_user_id"
     t.string "token", null: false
     t.datetime "token_expires_at"
     t.string "refresh_token"
