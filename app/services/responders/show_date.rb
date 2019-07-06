@@ -50,7 +50,7 @@ class Responders::ShowDate
     str = ''
     sets.each do |set, tracks|
       if options.include?('lengthwise')
-        str += "\n*#{set_name(set)}*"
+        str += "\n*#{name_of_set(set)}*"
         str += "  (#{set_duration(tracks)})" if options.include?('more')
         str += "\n"
         tracks.each_with_index do |track, idx|
@@ -58,7 +58,7 @@ class Responders::ShowDate
         end
       else
         setlist = tracks.map(&:title).join(', ')
-        str += "*#{set_name(set)}:*  #{setlist}\n"
+        str += "*#{name_of_set(set)}:*  #{setlist}\n"
       end
     end
     str

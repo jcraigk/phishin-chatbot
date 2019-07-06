@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-module ResponseHelpers
+module ResponseHelper
   SET_NAMES = {
     'S' => 'Soundcheck',
     '1' => 'Set 1',
@@ -17,7 +17,7 @@ module ResponseHelpers
     text.gsub(/\*/, '**')
   end
 
-  def set_name(set)
+  def name_of_set(set)
     SET_NAMES[set] || 'Unknown Set'
   end
 

@@ -22,8 +22,3 @@ Style/ClassAndModuleChildren:
   Enabled: false
 Metrics/LineLength:
   Max: 100
-
-RSpec/LetSetup:
-  Enabled: false
-RSpec/MultipleExpectations:
-  Enabled: false
