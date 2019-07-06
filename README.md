@@ -9,3 +9,9 @@ The production instance of this chatbot is hosted at [chatbot.phish.in](https://
 Join the [Discord](https://discord.gg/KZWFsNN) to discuss development.
 
 # TODO development section about registering bots and .env file and serveo
+
+The following cron job should be setup on the server (here, `INACTIVE_SECONDS` is set to 2 weeks):
+
+```
+INACTIVE_SECONDS=1_209_600 rails teams:disable_inactive
+```

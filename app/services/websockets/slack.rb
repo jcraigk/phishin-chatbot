@@ -4,7 +4,7 @@ class Websockets::Slack
     client = Slack::RealTime::Client.new(token: team.token)
 
     client.on :message do |event|
-      Timestamper.register(team.id)
+      Timestamper.register_event(team.id)
       next unless (command = Parsers::Slack.call(event, team.bot_user_id))
       chat_response = ChatResponder.call(:slack, command)
       client.message(channel: event.channel, text: chat_response)

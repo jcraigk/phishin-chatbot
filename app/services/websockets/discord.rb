@@ -4,7 +4,7 @@ class Websockets::Discord
     bot = Discordrb::Bot.new(token: team.token)
 
     bot.message do |event|
-      Timestamper.register(team.id)
+      Timestamper.register_event(team.id)
       next unless (command = Parsers::Discord.call(event))
       event.respond(ChatResponder.call(:discord, command))
     end

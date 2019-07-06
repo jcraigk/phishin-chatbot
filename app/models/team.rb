@@ -13,6 +13,10 @@ class Team < ApplicationRecord
   after_update_commit :close_websocket_if_inactive
   after_destroy_commit :close_websocket
 
+  def last_event_received_at
+    Time.zone.at(Timestamper.last_timestamp(id))
+  end
+
   private
 
   def open_websocket
@@ -25,7 +29,6 @@ class Team < ApplicationRecord
   end
 
   def close_websocket
-    puts "HERE HERE HERE"
     SocketManager.remove(self)
   end
 end
