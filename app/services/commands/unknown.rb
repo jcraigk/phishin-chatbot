@@ -6,12 +6,6 @@ class Commands::Unknown
   ].freeze
 
   def call
-    random_phrase
-  end
-
-  private
-
-  def random_phrase
-    @random_phrase ||= PHRASES.sample
+    PHRASES.sample
   end
 end

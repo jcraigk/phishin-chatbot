@@ -25,7 +25,7 @@ class Websockets::Manager
 
   def add(team)
     return if max_sockets_open? || socket_already_open?(team)
-    open_websocket(team)
+    open_websocket_thread(team)
   end
 
   def remove(team)

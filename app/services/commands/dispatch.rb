@@ -15,16 +15,16 @@ class Commands::Dispatch
 
   def call
     return response if platform == :slack
-    slack_to_discord(random_phrase)
+    slack_to_discord(response)
   end
 
   private
 
   def response
-    @response ||= command_class.call
+    @response ||= command_obj.call
   end
 
-  def command_class
+  def command_obj
     if parsable_date
       ::Commands::ShowDate.new(date: parsable_date, args: last_word)
     else

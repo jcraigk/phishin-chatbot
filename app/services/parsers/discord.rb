@@ -2,9 +2,6 @@
 class Parsers::Discord
   attr_reader :data
 
-  # Discord uses app OAuth Client ID as bot ID in all guilds
-  CHATBOT_REGEX = /\A<@#{ENV['DISCORD_CLIENT_ID']}> /.freeze
-
   def initialize(data)
     @data = data
   end
@@ -20,8 +17,13 @@ class Parsers::Discord
 
   private
 
+  # Discord uses app OAuth Client ID as bot ID in all guilds
+  def chatbox_regex
+    /\A<@#{ENV['DISCORD_CLIENT_ID']}> /
+  end
+
   def relevant_message?
-    text.match?(CHATBOT_REGEX)
+    text.match?(chatbox_regex)
   end
 
   def text
@@ -30,6 +32,6 @@ class Parsers::Discord
 
   # Extract "hi there" from "<@592570302473169665> hi there"
   def extract_message
-    text.gsub(CHATBOT_REGEX, '').strip
+    text.gsub(chatbox_regex, '').strip
   end
 end

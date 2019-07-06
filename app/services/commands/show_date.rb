@@ -74,7 +74,7 @@ class Commands::ShowDate
   end
 
   def web_link
-    "#{ResponseHelpers::BASE_PHISHIN_URL}/#{data.date}"
+    "#{CommandsHelper::BASE_PHISHIN_URL}/#{data.date}"
   end
 
   def combined_tag_names
