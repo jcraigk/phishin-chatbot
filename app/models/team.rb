@@ -17,7 +17,7 @@ class Team < ApplicationRecord
     RedisClient.set(timestamp_key, Time.current.to_i)
   end
 
-  def last_event_received_at
+  def last_event_at
     RedisClient.get(timestamp_key).to_i
   end
 
@@ -37,6 +37,6 @@ class Team < ApplicationRecord
   end
 
   def timestamp_key
-    "last_event_timestamp/#{id}"
+    "last_events/#{id}"
   end
 end
