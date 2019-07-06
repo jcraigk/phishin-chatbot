@@ -13,7 +13,7 @@ class Websockets::Manager
         .order(:id)
         .limit(MAX_SOCKETS)
         .find_each do |team|
-      open_websocket(team)
+      open_websocket_thread(team)
     end
   end
 
@@ -42,12 +42,11 @@ class Websockets::Manager
     sockets.size >= MAX_SOCKETS
   end
 
-  # TODO: report to Sentry if max_sockets_open
   def socket_already_open?(team)
     sockets.any? { |s| s.team_id == team.id }
   end
 
-  def open_websocket(team)
+  def open_websocket_thread(team)
     @sockets << OpenStruct.new(team_id: team.id, thread: new_thread(team))
   end
 

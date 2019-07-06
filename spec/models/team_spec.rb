@@ -61,7 +61,7 @@ describe Team do
   describe 'last event time tracking' do
     subject(:team) { create(:team) }
 
-    let(:timestamp_key) { "last_events/#{team.id}"}
+    let(:timestamp_key) { "last_events/#{team.id}" }
 
     before { Timecop.freeze }
 
