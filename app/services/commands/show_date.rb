@@ -1,6 +1,6 @@
 # frozen_string_literal: true
-class Responders::ShowDate
-  include ResponseHelpers
+class Commands::ShowDate
+  include CommandsHelper
 
   attr_reader :date, :options
 
@@ -9,12 +9,9 @@ class Responders::ShowDate
     @options = args.present? ? args.split(',') : []
   end
 
-  def call(platform)
+  def call
     return 'The banker said *"I ain\'t got that"*' unless data
-    response = options.include?('more') ? detailed_response : brief_response
-
-    return response if platform == :slack
-    slack_to_discord(response)
+    options.include?('more') ? detailed_response : brief_response
   end
 
   private
@@ -51,7 +48,7 @@ class Responders::ShowDate
     sets.each do |set, tracks|
       if options.include?('lengthwise')
         str += "\n*#{name_of_set(set)}*"
-        str += "  (#{set_duration(tracks)})" if options.include?('more')
+        str += "  (#{duration_of_set(tracks)})" if options.include?('more')
         str += "\n"
         tracks.each_with_index do |track, idx|
           str += "#{idx + 1}. #{track.title}\n"
@@ -96,7 +93,7 @@ class Responders::ShowDate
     duration_readable(data.duration, style: 'letters')
   end
 
-  def set_duration(tracks)
+  def duration_of_set(tracks)
     duration_readable(tracks.map(&:duration).inject(0, &:+), style: 'letters')
   end
 

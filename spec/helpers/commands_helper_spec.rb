@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.describe ResponseHelper do
+RSpec.describe CommandsHelper do
   subject { helper }
 
   describe 'constants' do

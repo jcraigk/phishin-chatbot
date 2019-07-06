@@ -28,6 +28,16 @@ class Websockets::Manager
     open_websocket(team)
   end
 
+  def remove(team)
+    return unless (thread = sockets.find { |s| s.team_id == team.id }&.thread)
+    puts "--- CLOSING #{log_suffix(team)}"
+    Thread.kill(thread)
+  rescue TypeError
+    false
+  end
+
+  private
+
   def max_sockets_open?
     sockets.size >= MAX_SOCKETS
   end
@@ -37,23 +47,17 @@ class Websockets::Manager
     sockets.any? { |s| s.team_id == team.id }
   end
 
-  def remove(team)
-    return unless (thread = sockets.find { |s| s.team_id == team.id }&.thread)
-    puts "--- CLOSING websocket for #{team.name} on #{team.platform.titleize}"
-    Thread.kill(thread)
-  rescue TypeError
-    false
-  end
-
-  private
-
   def open_websocket(team)
     @sockets << OpenStruct.new(team_id: team.id, thread: new_thread(team))
   end
 
   def new_thread(team)
     return unless ENV['WEBSOCKETS'] == 'true'
-    puts "--- OPENING websocket for #{team.name} on #{team.platform.titleize}"
+    puts "--- OPENING #{log_suffix(team)}"
     "Websockets::#{team.platform.titleize}".constantize.new_thread(team)
+  end
+
+  def log_suffix(team)
+    "websocket for Slack team #{team.name}"
   end
 end

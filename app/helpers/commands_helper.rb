@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-module ResponseHelper
+module CommandsHelper
   SET_NAMES = {
     'S' => 'Soundcheck',
     '1' => 'Set 1',

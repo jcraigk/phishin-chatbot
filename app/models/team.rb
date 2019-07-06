@@ -13,8 +13,12 @@ class Team < ApplicationRecord
   after_update_commit :close_websocket_if_inactive
   after_destroy_commit :close_websocket
 
+  def register_event
+    RedisClient.set(timestamp_key, Time.current.to_i)
+  end
+
   def last_event_received_at
-    Time.zone.at(Timestamper.last_timestamp(id))
+    RedisClient.get(timestamp_key).to_i
   end
 
   private
@@ -30,5 +34,9 @@ class Team < ApplicationRecord
 
   def close_websocket
     SocketManager.remove(self)
+  end
+
+  def timestamp_key
+    "last_event_timestamp/#{id}"
   end
 end
