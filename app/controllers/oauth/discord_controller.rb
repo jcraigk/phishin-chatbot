@@ -1,6 +1,4 @@
 # frozen_string_literal: true
-
-# TODO: refresh_token / rotation
 class Oauth::DiscordController < ApplicationController
   def code_grant
     TeamRegistrar.call(

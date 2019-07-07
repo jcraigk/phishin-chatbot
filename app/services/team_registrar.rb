@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class TeamRegistrar
-  attr_reader :platform, :id, :name, :bot_user_id, :token, :token_expires_at, :refresh_token
+  attr_reader :platform, :id, :name, :bot_user_id, :token
 
   def initialize(opts = {})
     @platform = opts[:platform]
@@ -8,8 +8,6 @@ class TeamRegistrar
     @name = opts[:name]
     @bot_user_id = opts[:bot_user_id]
     @token = opts[:token]
-    @token_expires_at = opts[:token_expires_at]
-    @refresh_token = opts[:refresh_token]
   end
 
   def self.call(opts = {})
@@ -30,9 +28,7 @@ class TeamRegistrar
   def auth_attrs
     {
       bot_user_id: bot_user_id,
-      token: token,
-      token_expires_at: token_expires_at,
-      refresh_token: refresh_token
+      token: token
     }.compact
   end
 
@@ -45,9 +41,6 @@ class TeamRegistrar
   end
 
   def existing_team
-    @existing_team ||=
-      Team.where(platform: platform, token: token)
-          .or(Team.where(platform: platform, remote_id: id))
-          .first
+    @existing_team ||= Team.find_by(platform: platform, remote_id: id)
   end
 end
