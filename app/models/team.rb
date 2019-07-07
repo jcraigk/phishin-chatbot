@@ -21,6 +21,10 @@ class Team < ApplicationRecord
     Time.zone.at(RedisClient.get(redis_event_key).to_i)
   end
 
+  def disable
+    update(active: false)
+  end
+
   private
 
   def open_chat_connection

@@ -5,7 +5,7 @@ class TeamsController < ApplicationController
   def purge_inactive
     Team.where(active: true).find_each do |team|
       next if team.last_event_at > Time.current - inactive_seconds
-      team.update(active: false)
+      team.disable
     end
 
     head :no_content

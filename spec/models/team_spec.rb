@@ -13,6 +13,14 @@ describe Team do
   it { is_expected.to validate_uniqueness_of(:name).scoped_to(:platform) }
   it { is_expected.to validate_uniqueness_of(:token).scoped_to(:platform) }
 
+  describe '#disable' do
+    before { team.disable }
+
+    it 'sets active to false' do
+      expect(team.active?).to eq(false)
+    end
+  end
+
   describe 'chat platform connection lifecycle hooks' do
     context 'with Slack' do
       let(:platform) { :slack }
@@ -60,7 +68,7 @@ describe Team do
         end
 
         context 'when active is changed to false' do
-          before { team.update(active: false) }
+          before { team.disable }
 
           include_examples 'closes websocket'
         end
@@ -97,7 +105,7 @@ describe Team do
         subject(:team) { create(:team, platform: platform) }
 
         context 'when active is changed to false' do
-          before { team.update(active: false) }
+          before { team.disable }
 
           include_examples 'leaves guild'
         end
