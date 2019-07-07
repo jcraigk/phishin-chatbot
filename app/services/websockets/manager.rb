@@ -9,12 +9,9 @@ class Websockets::Manager
   end
 
   def start_all
-    Team.where(active: true)
-        .order(:id)
-        .limit(MAX_SOCKETS)
-        .find_each do |team|
-      open_websocket_thread(team)
-    end
+    return unless ENV['WEBSOCKETS'] == 'true'
+    start_discord_socket
+    start_slack_sockets
   end
 
   def stop_all
@@ -24,19 +21,42 @@ class Websockets::Manager
   end
 
   def add(team)
+    return unless ENV['WEBSOCKETS'] == 'true'
+    return if team.discord? # Handled through existing websocket
     return if max_sockets_open? || socket_already_open?(team)
-    open_websocket_thread(team)
+    open_slack_socket(team)
   end
 
   def remove(team)
+    return if team.discord? # Handled through existing websocket
     return unless (thread = sockets.find { |s| s.team_id == team.id }&.thread)
-    puts "--- CLOSING #{log_suffix(team)}"
+    puts "--- CLOSING SOCKET for Slack / #{team.name}"
     Thread.kill(thread)
+    sockets.delete_if { |s| s.team_id == team.id }
   rescue TypeError
     false
   end
 
   private
+
+  def start_slack_sockets
+    Team.where(platform: :slack, active: true)
+        .order(:id)
+        .limit(MAX_SOCKETS)
+        .find_each do |team|
+      open_slack_socket(team)
+    end
+  end
+
+  def open_slack_socket(team)
+    puts "--- OPENING SOCKET for Slack / #{team.name}"
+    @sockets << OpenStruct.new(team_id: team.id, thread: Websockets::Slack.new_thread(team))
+  end
+
+  def start_discord_socket
+    puts "--- OPENING SOCKET for Discord (all authorized guilds)"
+    @sockets << OpenStruct.new(team_id: 'discord', thread: Websockets::Discord.new_thread)
+  end
 
   def max_sockets_open?
     sockets.size >= MAX_SOCKETS
@@ -44,19 +64,5 @@ class Websockets::Manager
 
   def socket_already_open?(team)
     sockets.any? { |s| s.team_id == team.id }
-  end
-
-  def open_websocket_thread(team)
-    @sockets << OpenStruct.new(team_id: team.id, thread: new_thread(team))
-  end
-
-  def new_thread(team)
-    return unless ENV['WEBSOCKETS'] == 'true'
-    puts "--- OPENING #{log_suffix(team)}"
-    "Websockets::#{team.platform.titleize}".constantize.new_thread(team)
-  end
-
-  def log_suffix(team)
-    "websocket for Slack team #{team.name}"
   end
 end

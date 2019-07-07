@@ -1,15 +1,10 @@
 # frozen_string_literal: true
-
-# TODO: refresh_token / rotation
 class Oauth::DiscordController < ApplicationController
   def code_grant
     TeamRegistrar.call(
       platform: :discord,
       id: oauth_data[:guild][:id],
-      name: team_name,
-      token: oauth_data[:access_token],
-      token_expires_at: token_expires_at,
-      refresh_token: oauth_data[:refresh_token]
+      name: team_name
     )
 
     redirect_to success_path(platform: :discord, team: team_name)
@@ -22,7 +17,7 @@ class Oauth::DiscordController < ApplicationController
   end
 
   def oauth_url
-    "#{ENV['DISCORD_API_ENDPOINT']}/oauth2/token"
+    'https://discordapp.com/api/v6/oauth2/token'
   end
 
   def oauth_params
@@ -34,10 +29,6 @@ class Oauth::DiscordController < ApplicationController
       'redirect_uri': ENV['DISCORD_REDIRECT_URI'],
       'scope': 'bot'
     }
-  end
-
-  def token_expires_at
-    Time.current + oauth_data[:expires_in].to_i.seconds
   end
 
   def team_name

@@ -1,6 +1,4 @@
 # frozen_string_literal: true
-
-# TODO: refresh_token / rotation
 class Oauth::SlackController < ApplicationController
   def code_grant
     TeamRegistrar.call(

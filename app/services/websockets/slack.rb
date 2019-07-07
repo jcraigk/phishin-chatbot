@@ -12,12 +12,12 @@ class Websockets::Slack
 
     client.on :tokens_revoked do |event|
       puts "Tokens revoked for #{team.name} on #{team.platform}"
-      SocketManager.remove(team)
+      team.disable
     end
 
     client.on :app_uninstalled do |event|
       puts "App uninstalled for #{team.name} on #{team.platform}"
-      SocketManager.remove(team)
+      team.disable
     end
 
     Thread.new { client.start! }

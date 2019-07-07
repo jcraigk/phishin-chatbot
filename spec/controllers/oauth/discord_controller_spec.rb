@@ -8,17 +8,13 @@ RSpec.describe Oauth::DiscordController, type: :request do
   describe 'GET /oauth/discord' do
     subject(:response) { get(path, params) }
 
-    let(:access_token) { 'sometoken' }
     let(:code) { 'oauthcodexyz' }
-    let(:expires_in) { 86_400 }
     let(:guild_id) { '123' }
     let(:guild_name) { 'Cool Guild' }
     let(:mock_http_post) { instance_spy(HTTP) }
-    let(:oauth_url) { "#{ENV['DISCORD_API_ENDPOINT']}/oauth2/token" }
+    let(:oauth_url) { 'https://discordapp.com/api/v6/oauth2/token' }
     let(:params) { { code: code } }
     let(:path) { '/oauth/discord' }
-    let(:refresh_token) { 'somerefreshtoken' }
-    let(:token_expires_at) { Time.current + expires_in.to_i.seconds }
     let(:oauth_params) do
       {
         'client_id': ENV['DISCORD_CLIENT_ID'],
@@ -34,20 +30,14 @@ RSpec.describe Oauth::DiscordController, type: :request do
         guild: {
           id: guild_id,
           name: guild_name
-        },
-        access_token: access_token,
-        expires_in: expires_in,
-        refresh_token: refresh_token
+        }
       }.to_json
     end
     let(:registration_args) do
       {
         platform: :discord,
         id: guild_id,
-        name: guild_name,
-        token: access_token,
-        token_expires_at: token_expires_at,
-        refresh_token: refresh_token
+        name: guild_name
       }
     end
     let(:redirect_path) { success_path(platform: :discord, team: guild_name) }
