@@ -8,10 +8,8 @@ describe Team do
 
   it { is_expected.to validate_presence_of(:remote_id) }
   it { is_expected.to validate_presence_of(:name) }
-  it { is_expected.to validate_presence_of(:token) }
   it { is_expected.to validate_uniqueness_of(:remote_id).scoped_to(:platform) }
   it { is_expected.to validate_uniqueness_of(:name).scoped_to(:platform) }
-  it { is_expected.to validate_uniqueness_of(:token).scoped_to(:platform) }
 
   describe '#disable' do
     before { team.disable }

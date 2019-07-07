@@ -7,7 +7,6 @@ class Team < ApplicationRecord
 
   validates :remote_id, presence: true, uniqueness: { scope: :platform }
   validates :name, presence: true, uniqueness: { scope: :platform }
-  validates :token, presence: true, uniqueness: { scope: :platform }
 
   after_create_commit :open_chat_connection
   after_update_commit :sync_chat_connection

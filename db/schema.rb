@@ -20,15 +20,12 @@ ActiveRecord::Schema.define(version: 2019_07_01_180724) do
     t.string "remote_id", null: false
     t.string "name", null: false
     t.string "bot_user_id"
-    t.string "token", null: false
-    t.datetime "token_expires_at"
-    t.string "refresh_token"
+    t.string "token"
     t.boolean "active", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name", "platform"], name: "index_teams_on_name_and_platform", unique: true
     t.index ["remote_id", "platform"], name: "index_teams_on_remote_id_and_platform", unique: true
-    t.index ["token", "platform"], name: "index_teams_on_token_and_platform", unique: true
   end
 
 end
