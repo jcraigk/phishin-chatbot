@@ -14,7 +14,7 @@ RSpec.describe Oauth::DiscordController, type: :request do
     let(:guild_id) { '123' }
     let(:guild_name) { 'Cool Guild' }
     let(:mock_http_post) { instance_spy(HTTP) }
-    let(:oauth_url) { "#{ENV['DISCORD_API_ENDPOINT']}/oauth2/token" }
+    let(:oauth_url) { 'https://discordapp.com/api/v6/oauth2/token' }
     let(:params) { { code: code } }
     let(:path) { '/oauth/discord' }
     let(:refresh_token) { 'somerefreshtoken' }

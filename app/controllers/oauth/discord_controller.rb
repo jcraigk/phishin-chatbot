@@ -22,7 +22,7 @@ class Oauth::DiscordController < ApplicationController
   end
 
   def oauth_url
-    "#{ENV['DISCORD_API_ENDPOINT']}/oauth2/token"
+    'https://discordapp.com/api/v6/oauth2/token'
   end
 
   def oauth_params
