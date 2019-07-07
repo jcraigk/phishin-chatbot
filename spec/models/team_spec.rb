@@ -134,13 +134,15 @@ describe Team do
     end
 
     describe '#last_event_at' do
+      let(:unix_timestamp) { 1_562_459_950 }
+
       before do
         allow(RedisClient).to receive(:get)
-        team.last_event_at
+        allow(RedisClient).to receive(:get).with(timestamp_key).and_return(unix_timestamp.to_s)
       end
 
       it 'calls RedisClient#get' do
-        expect(RedisClient).to have_received(:get).with(timestamp_key)
+        expect(team.last_event_at).to eq(Time.zone.at(unix_timestamp))
       end
     end
   end

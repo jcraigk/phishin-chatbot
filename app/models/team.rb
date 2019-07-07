@@ -18,7 +18,7 @@ class Team < ApplicationRecord
   end
 
   def last_event_at
-    RedisClient.get(redis_event_key).to_i
+    Time.zone.at(RedisClient.get(redis_event_key).to_i)
   end
 
   private

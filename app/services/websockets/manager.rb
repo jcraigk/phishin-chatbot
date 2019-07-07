@@ -9,6 +9,7 @@ class Websockets::Manager
   end
 
   def start_all
+    return unless ENV['WEBSOCKETS'] == 'true'
     start_discord_socket
     start_slack_sockets
   end
@@ -20,6 +21,7 @@ class Websockets::Manager
   end
 
   def add(team)
+    return unless ENV['WEBSOCKETS'] == 'true'
     return if team.discord? # Handled through existing websocket
     return if max_sockets_open? || socket_already_open?(team)
     open_slack_socket(team)
