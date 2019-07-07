@@ -13,11 +13,11 @@ class Team < ApplicationRecord
   after_destroy_commit :close_chat_connection
 
   def register_event
-    RedisClient.set(redis_event_key, Time.current.to_i)
+    Timestamper.register(platform, remote_id)
   end
 
   def last_event_at
-    Time.zone.at(RedisClient.get(redis_event_key).to_i)
+    Timestamper.lookup(platform, remote_id)
   end
 
   def disable
@@ -52,9 +52,5 @@ class Team < ApplicationRecord
   def leave_discord_guild
     HTTP.auth("Bot #{ENV['DISCORD_BOT_TOKEN']}")
         .delete("https://discordapp.com/api/v6/users/@me/guilds/#{remote_id}")
-  end
-
-  def redis_event_key
-    "last_event/#{id}"
   end
 end

@@ -4,7 +4,7 @@ class Websockets::Discord
     bot = Discordrb::Bot.new(token: ENV['DISCORD_BOT_TOKEN'])
 
     bot.message do |event|
-      # team.register_event # TODO: need to figure out which team is sending the data
+      Timestamper.register(:discord, event.channel.server.id)
       next unless (command = Parsers::Discord.call(event))
       response = Commands::Dispatch.call(:discord, command)
       event.respond(response)

@@ -122,7 +122,7 @@ describe Team do
   describe 'last event time tracking' do
     subject(:team) { create(:team) }
 
-    let(:timestamp_key) { "last_event/#{team.id}" }
+    let(:timestamp_key) { "#{team.platform}/#{team.remote_id}" }
 
     before { Timecop.freeze }
 
@@ -130,25 +130,22 @@ describe Team do
 
     describe '#register_event' do
       before do
-        allow(RedisClient).to receive(:set)
+        allow(Timestamper).to receive(:register)
         team.register_event
       end
 
-      it 'calls RedisClient#set' do
-        expect(RedisClient).to have_received(:set).with(timestamp_key, Time.current.to_i)
+      it 'calls Timestamper#register' do
+        expect(Timestamper).to have_received(:register).with(team.platform, team.remote_id)
       end
     end
 
     describe '#last_event_at' do
-      let(:unix_timestamp) { 1_562_459_950 }
-
       before do
-        allow(RedisClient).to receive(:get)
-        allow(RedisClient).to receive(:get).with(timestamp_key).and_return(unix_timestamp.to_s)
+        allow(Timestamper).to receive(:lookup).and_return(Time.current)
       end
 
       it 'calls RedisClient#get' do
-        expect(team.last_event_at).to eq(Time.zone.at(unix_timestamp))
+        expect(team.last_event_at).to eq(Time.current)
       end
     end
   end
