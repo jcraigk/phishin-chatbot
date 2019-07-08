@@ -28,22 +28,17 @@ table.table.command-table
   tbody
     tr
       td.command-cell
-        | {date} [more[,lengthwise]]
+        | {date} [more]
       td[nowrap]
-        | Oct 31, 2014
+        | Jul 31 2013
         br
-        | 1996-12-31 more
+        | 1996-12-31
         br
-        | December 31 1996 lengthwise,more
+        | 1996 December 31 more
       td
-        | Providing a date in any parsable form returns info about the show, including full setlist.
-        ul
-          li
-            i> more
-            | - display more metadata about the show
-          li
-            i> lengthwise
-            | - display the setlist in vertical enumerated style
+        | Providing a date returns info about the show, including setlist.
+        br
+        | Adding the option "more" displays more details.
 
 br
 
@@ -65,19 +60,19 @@ table.table.command-table
         | song Harry Hood
         br
         | song you-enjoy-myself
-      td
+      td.description-cell
         | Providing the keyword `song` followed by a song title or slug returns details about the song.
     tr
       td.command-cell
-        | jam [{song}]
+        | jamchart [{song}]
       td[nowrap]
-        | jam
+        | jamchart
         br
-        | jam Harry Hood
+        | jamchart Harry Hood
         br
-        | jam you-enjoy-myself
+        | jamchart you-enjoy-myself
       td
-        | Providing the keyword `jam` returns a link to a random Jamchart track, timstamped to jam start time if available.  Adding a song title or slug constrains the selection.
+        | Providing the keyword `jamchart` returns a link to a random Jamchart track, timestamped to jam start time if available.  Adding a song title or slug constrains the selection.
     tr
       td.command-cell
         | top {x} shows|tracks
@@ -98,46 +93,24 @@ table.table.command-table
         | Providing only a year returns stats about the year.
     tr
       td.command-cell
-        | search {term}
-      td[nowrap]
-        | search wolfman
-        br
-        | search Madison Square Garden
-      td
-        | Providing the keyword `search` followed by a search phrase returns general search results.
-    tr
-      td.command-cell
-        | tag {tag}
-      td[nowrap]
-        | tag Jamcharts
-        br
-        | tag Alt Lyric
-        br
-        | tag alt-lyric
-      td
-        | Providing the keyword `tag` followed by the name or slug of a tag returns data and links associated with the tag.
-    tr
-      td.command-cell
-        | recent|last|latest
+        | recent|last|latest [{song}]
       td[nowrap]
         | recent
         br
-        | last
+        | last Harry Hood
         br
         | latest
       td
         | Providing the keyword `recent` provides info from the latest show.
+        br
+        | Adding a song title or slug will return the last performance of that song.
     tr
       td.command-cell
-        | random [show|set|soundcheck|set 1|set 2|set 3|encore|{song}]
+        | random [show]
       td[nowrap]
         | random
-        br
-        | random set
-        br
-        | random encore
       td
-        | Providing the keyword `random` followed by another keyword will return a random selection.
+        | Providing the keyword `random` followed by another keyword will return a random show.
     tr
       td.command-cell
         | venue {venue}
