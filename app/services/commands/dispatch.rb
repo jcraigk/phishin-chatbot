@@ -26,7 +26,7 @@ class Commands::Dispatch
 
   def command_obj
     if parsable_date
-      ::Commands::ShowDate.new(date: parsable_date, args: last_word)
+      ::Commands::Date.new(date: parsable_date, option: last_word)
     else
       ::Commands::Unknown.new
     end
