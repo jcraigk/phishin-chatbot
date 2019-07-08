@@ -9,9 +9,8 @@ class Websockets::Manager
   end
 
   def start_all
-    return unless ENV['WEBSOCKETS'] == 'true'
-    start_discord_socket
-    start_slack_sockets
+    open_discord_socket
+    open_slack_sockets
   end
 
   def stop_all
@@ -21,7 +20,6 @@ class Websockets::Manager
   end
 
   def add(team)
-    return unless ENV['WEBSOCKETS'] == 'true'
     return if team.discord? # Handled through existing websocket
     return if max_sockets_open? || socket_already_open?(team)
     open_slack_socket(team)
@@ -39,7 +37,7 @@ class Websockets::Manager
 
   private
 
-  def start_slack_sockets
+  def open_slack_sockets
     Team.where(platform: :slack, active: true)
         .order(:id)
         .limit(MAX_SOCKETS)
@@ -49,11 +47,13 @@ class Websockets::Manager
   end
 
   def open_slack_socket(team)
+    return if Rails.env.test? || ENV['NOSOCKETS'].present?
     puts "--- OPENING SOCKET for Slack / #{team.name}"
     @sockets << OpenStruct.new(team_id: team.id, thread: Websockets::Slack.new_thread(team))
   end
 
-  def start_discord_socket
+  def open_discord_socket
+    return if Rails.env.test? || ENV['NOSOCKETS'].present?
     puts "--- OPENING SOCKET for Discord (all authorized guilds)"
     @sockets << OpenStruct.new(team_id: 'discord', thread: Websockets::Discord.new_thread)
   end
