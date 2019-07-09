@@ -55,6 +55,26 @@ table.table.command-table
   tbody
     tr
       td.command-cell
+        | recent|last|latest [{song}]
+      td[nowrap]
+        | recent
+        br
+        | last Harry Hood
+        br
+        | latest
+      td
+        | Providing the keyword `recent` returns info from the latest show.
+        br
+        | Adding a song title or slug will return the last performance of that song.
+    tr
+      td.command-cell
+        | random [show]
+      td[nowrap]
+        | random
+      td
+        | Providing the keyword `random` will return a random show.
+    tr
+      td.command-cell
         | song {song}
       td
         | song Harry Hood
@@ -72,7 +92,7 @@ table.table.command-table
         br
         | jamchart you-enjoy-myself
       td
-        | Providing the keyword `jamchart` returns a link to a random Jamchart track, timestamped to jam start time if available.  Adding a song title or slug constrains the selection.
+        | Providing the keyword `jamchart` returns a random Jamchart selection, timestamped to jam commencement if available.  Adding a song title or slug constrains the selection.
     tr
       td.command-cell
         | top {x} shows|tracks
@@ -84,41 +104,12 @@ table.table.command-table
         | Providing the keyword `top` followed by an integer and either `shows` or `tracks` will return the specified number of most-liked entities.
     tr
       td.command-cell
-        | {year}
-      td[nowrap]
-        | 1995
-        br
-        | 2010
-      td
-        | Providing only a year returns stats about the year.
-    tr
-      td.command-cell
-        | recent|last|latest [{song}]
-      td[nowrap]
-        | recent
-        br
-        | last Harry Hood
-        br
-        | latest
-      td
-        | Providing the keyword `recent` provides info from the latest show.
-        br
-        | Adding a song title or slug will return the last performance of that song.
-    tr
-      td.command-cell
-        | random [show]
-      td[nowrap]
-        | random
-      td
-        | Providing the keyword `random` followed by another keyword will return a random show.
-    tr
-      td.command-cell
         | venue {venue}
       td[nowrap]
         | venue Deer Creek
         br
         | venue madison-square-garden
         br
-        | venue msg
+        | venue MSG
       td
         | Providing the keyword `venue` followed by the name, abbreviation, past name, or slug of a venue returns info on the venue.
