@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dokku": {
-      "predeploy": "NOSOCKETS=true rails db:migrate && rake assets:precompile"
+      "predeploy": "NOSOCKETS=true rails db:migrate && NOSOCKETS=true rake assets:precompile"
     }
   }
 }
