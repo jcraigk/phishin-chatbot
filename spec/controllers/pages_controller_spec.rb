@@ -17,10 +17,15 @@ RSpec.describe PagesController, type: :request do
   describe 'GET /success' do
     subject(:response) { get('/success', platform: :slack, team: 'Cool Team') }
 
+    let(:expected_content) do
+      'The bot is now available to the <strong>Slack</strong>' \
+      ' team <strong>Cool Team</strong>'
+    end
+
     it { is_expected.to be_successful }
 
     it 'returns expected content' do
-      expect(response.body).to include('The bot is now available to the <strong>Slack</strong> team <strong>Cool Team</strong>')
+      expect(response.body).to include(expected_content)
     end
   end
 end

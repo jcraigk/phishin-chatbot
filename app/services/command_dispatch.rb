@@ -1,11 +1,11 @@
 # frozen_string_literal: true
-class Commands::Dispatch
+class CommandDispatch
   include CommandsHelper
 
   attr_reader :platform, :command
 
   def initialize(platform, command)
-    @platform = platform
+    @platform = platform.to_sym
     @command = command
   end
 

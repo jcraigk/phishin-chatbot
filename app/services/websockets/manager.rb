@@ -22,13 +22,15 @@ class Websockets::Manager
   def add(team)
     return if team.discord? # Handled through existing websocket
     return if max_sockets_open? || socket_already_open?(team)
+
     open_slack_socket(team)
   end
 
   def remove(team)
     return if team.discord? # Handled through existing websocket
     return unless (thread = sockets.find { |s| s.team_id == team.id }&.thread)
-    puts "--- CLOSING SOCKET for Slack / #{team.name}"
+
+    Rails.logger.info("--- CLOSING SOCKET for Slack / #{team.name}")
     Thread.kill(thread)
     sockets.delete_if { |s| s.team_id == team.id }
   rescue TypeError
@@ -48,13 +50,15 @@ class Websockets::Manager
 
   def open_slack_socket(team)
     return if Rails.env.test? || ENV['NOSOCKETS'].present?
-    puts "--- OPENING SOCKET for Slack / #{team.name}"
+
+    Rails.logger.info("--- OPENING SOCKET for Slack / #{team.name}")
     @sockets << OpenStruct.new(team_id: team.id, thread: Websockets::Slack.new_thread(team))
   end
 
   def open_discord_socket
     return if Rails.env.test? || ENV['NOSOCKETS'].present?
-    puts "--- OPENING SOCKET for Discord (all authorized guilds)"
+
+    Rails.logger.info('--- OPENING SOCKET for Discord (all authorized guilds)')
     @sockets << OpenStruct.new(team_id: 'discord', thread: Websockets::Discord.new_thread)
   end
 

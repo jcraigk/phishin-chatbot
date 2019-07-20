@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.describe PagesController, type: :request do
+RSpec.describe TeamsController, type: :request do
   include Rack::Test::Methods
 
   describe 'POST /teams/purge_inactive' do

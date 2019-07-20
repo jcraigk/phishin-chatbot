@@ -4,13 +4,15 @@ class Commands::Date
 
   attr_reader :date, :option
 
+  DEFAULT_RESPONSE = 'The banker said *"I ain\'t got that"*'
+
   def initialize(date:, option:)
     @date = date
     @option = option
   end
 
   def call
-    return 'The banker said *"I ain\'t got that"*' unless data
+    return DEFAULT_RESPONSE unless data
     return detailed_response if option == 'more'
     standard_response
   end
@@ -21,17 +23,17 @@ class Commands::Date
     str = "*#{pretty_date}* @ *#{data.venue_name}*\n"
     str += web_link + "\n"
     str += "*This show is incomplete*\n" if data.incomplete
-    str += horizontal_setlist
+    str + horizontal_setlist
   end
 
-  def detailed_response
+  def detailed_response # rubocop:disable Metrics/AbcSize
     str = "*#{pretty_date}*\n"
     str += "*Venue:* #{data.venue_name} in #{location}\n"
     str += "*This show is incomplete*\n" if data.incomplete
     str += "*Duration:* #{show_duration}\n"
     str += "*Tags:* #{stacked_tag_names}\n" if combined_tag_names.any?
     str += web_link + "\n"
-    str += vertical_setlist
+    str + vertical_setlist
   end
 
   def horizontal_setlist
@@ -43,25 +45,34 @@ class Commands::Date
   def vertical_setlist
     str = "```\n"
     str += sets.map do |set, tracks|
-      set_str =
-        format(
-          "    %-25<set>s %20<duration>s\n",
-          set: name_of_set(set),
-          duration: duration_of_set(tracks)
-        )
-      set_str += (' ' * 4) + ('-' * 46) + "\n"
-      set_str += tracks.map.with_index do |track, idx|
-        format(
-          '%2<position>d. %-40.40<title>s %5<duration>s',
-          position: idx + 1,
-          title: track.title,
-          duration: duration_readable(track.duration)
-        )
-      end.join("\n")
-      set_str
+      set_str = set_title_with_duration(set, tracks)
+      set_str += horizontal_rule
+      set_str + longform_setlist(tracks)
     end.join("\n\n")
+    str + "\n```"
+  end
 
-    str += "\n```"
+  def horizontal_rule
+    (' ' * 4) + ('-' * 46) + "\n"
+  end
+
+  def set_title_with_duration(set, tracks)
+    format(
+      "    %-25<set>s %20<duration>s\n",
+      set: name_of_set(set),
+      duration: duration_of_set(tracks)
+    )
+  end
+
+  def longform_setlist(tracks)
+    tracks.map.with_index do |track, idx|
+      format(
+        '%2<position>d. %-40.40<title>s %5<duration>s',
+        position: idx + 1,
+        title: track.title,
+        duration: duration_readable(track.duration)
+      )
+    end.join("\n")
   end
 
   def stacked_tag_names

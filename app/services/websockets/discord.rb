@@ -6,7 +6,7 @@ class Websockets::Discord
     bot.message do |event|
       Timestamper.register(:discord, event.channel.server.id)
       next unless (command = Parsers::Discord.call(event))
-      response = Commands::Dispatch.call(:discord, command)
+      response = CommandDispatch.call(:discord, command)
       event.respond(response)
     end
 

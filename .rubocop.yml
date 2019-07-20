@@ -11,7 +11,7 @@ AllCops:
     - vendor/**/*
     - lib/tasks/*
     - db/**/*
-
+  DisplayCopNames: true
 Documentation:
   Enabled: false
 Layout/EmptyLineAfterMagicComment:
@@ -22,3 +22,15 @@ Style/ClassAndModuleChildren:
   Enabled: false
 Metrics/LineLength:
   Max: 100
+Metrics/BlockLength:
+  Max: 150
+Metrics/ClassLength:
+  Max: 150
+RSpec/NestedGroups:
+  Max: 5
+
+# Buggy
+Rails/HttpPositionalArguments:
+  Enabled: false
+Lint/FormatParameterMismatch:
+  Enabled: false
