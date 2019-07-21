@@ -1,3 +1,4 @@
+[![codecov](https://codecov.io/gh/jcraigk/phishin-chatbot/branch/master/graph/badge.svg)](https://codecov.io/gh/jcraigk/phishin-chatbot)
 [![Maintainability](https://api.codeclimate.com/v1/badges/278d4695252307434304/maintainability)](https://codeclimate.com/github/jcraigk/phishin-chatbot/maintainability)
 
 ![Phish.in' Chatbot Logo](https://i.imgur.com/mxOqj0B.png)

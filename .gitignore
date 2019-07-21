@@ -1,7 +1,6 @@
 .bundle
-.env
 .DS_Store
-
+.env
 /coverage
 /log
 /tmp

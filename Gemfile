@@ -25,6 +25,7 @@ end
 
 group :development, :test do
   gem 'awesome_print'
+  gem 'codecov'
   gem 'dotenv-rails'
   gem 'pry-rails'
 end
