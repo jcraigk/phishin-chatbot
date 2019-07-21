@@ -26,6 +26,6 @@ stop :
 up :
 	docker-compose up
 
-restart :
-	docker-compose stop
-	docker-compose up -d
+restart : stop start
+
+rebuild : stop build start

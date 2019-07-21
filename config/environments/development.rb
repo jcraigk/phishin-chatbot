@@ -30,7 +30,8 @@ Rails.application.configure do
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
-  logger           = ActiveSupport::Logger.new(STDOUT)
+  config.log_level = :debug
+  logger = ActiveSupport::Logger.new(STDOUT)
   logger.formatter = config.log_formatter
-  config.logger    = ActiveSupport::TaggedLogging.new(logger)
+  config.logger = ActiveSupport::TaggedLogging.new(logger)
 end
