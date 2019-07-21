@@ -14,6 +14,7 @@ gem 'rails'
 gem 'redis'
 gem 'sass-rails'
 gem 'sentry-raven'
+gem 'simplecov', require: false
 gem 'slack-ruby-client'
 gem 'slim'
 
@@ -35,6 +36,5 @@ group :test do
   gem 'faker'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
-  gem 'simplecov', require: false
   gem 'timecop'
 end
