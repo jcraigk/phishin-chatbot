@@ -14,7 +14,6 @@ gem 'rails'
 gem 'redis'
 gem 'sass-rails'
 gem 'sentry-raven'
-gem 'simplecov', require: false
 gem 'slack-ruby-client'
 gem 'slim'
 
@@ -26,9 +25,10 @@ end
 
 group :development, :test do
   gem 'awesome_print'
-  gem 'codecov'
+  gem 'codecov', require: false
   gem 'dotenv-rails'
   gem 'pry-rails'
+  gem 'simplecov', require: false
 end
 
 group :test do
