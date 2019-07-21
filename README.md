@@ -58,9 +58,21 @@ DISCORD_CLIENT_SECRET=<your-client-secret>
 
 ## Running the App
 
-Run `make start` to build and start the Docker images.  Once running, can visit `localhost:3000` in your browser to see the dashboard.  Assuming you setup your bots correctly as described above, you can use the buttons on the dashboard to register your development instance with your Slack team or Discord guild.
+You may choose to run both the app and services (Postgres and Redis) on your local machine without using Docker at all.  However, it is recommended that you use Docker for at least the services.  You may then run the Rails app on your local machine or in its Docker container.
 
-In addition to the web stack, websockets are opened automatically to both Slack and Discord.  To prevent duplicate sockets from opening, you'll want to use the environment variable `NOSOCKETS=true` when running Rails commands, such as `rails c`.
+You must create the local file `.env` if it does not already exist.  Inside, append the following:
+
+```
+REDIS_URL=redis://redis:6379
+```
+
+To start everything in Docker, run `make start` to build and start the Docker images.
+
+Alternatively, you can run `make services` to run only Postgres and Redis in Docker to speed up development/debugging on the Rails side.  Then you can run Ruby/Rails directly on your own machine by running `bundle install` and `rails s` etc.  Note that you'll also need to manually initialize the database by running `rails db:create` and `rails db:migrate` (be sure to use `NOSOCKETS=true` as described below).
+
+Once the stack is running, you can visit `localhost:3000` in your browser to see the dashboard. Assuming you setup your bots correctly as described above, you can use the buttons on the dashboard to register your development instance with your Slack team or Discord guild.
+
+In addition to the web server, websockets are opened automatically to both Slack and Discord when the app boots.  To prevent duplicate sockets from opening, you'll want to use the environment variable `NOSOCKETS=true` when running Rails commands, such as `rails c`.
 
 ## Maintenance
 
