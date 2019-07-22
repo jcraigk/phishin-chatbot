@@ -11,10 +11,8 @@ class Commands::Help
                             Appending the keyword "more" displays more detail.
                             Examples: "Jul 31 2013", "1996-12-31 more"
 
-    recent|last [{song}]    Sending the keyword `recent` or `last` returns info
-                            from the last show.
-                            Appending a song slug or partial title will return
-                            the last performance of that song.
+    recent|last [{song}]    Sending `recent` or `last` returns the last show.
+                            A song slug or partial title may be appended.
                             Examples: "recent", "last Hood", "last blaze-on"
     ```
   TXT
