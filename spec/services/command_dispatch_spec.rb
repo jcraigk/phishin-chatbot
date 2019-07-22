@@ -44,7 +44,7 @@ describe CommandDispatch do
     end
   end
 
-  context 'with `recent|latest|last` command' do
+  context 'with `recent|last` command' do
     let(:command_obj) { instance_spy(Commands::Recent) }
     let(:command) { 'recent' }
 

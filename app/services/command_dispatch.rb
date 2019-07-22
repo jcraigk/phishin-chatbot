@@ -27,7 +27,7 @@ class CommandDispatch
   def command_obj
     if first_word == 'help'
       ::Commands::Help.new
-    elsif first_word.in?(%w[recent last latest])
+    elsif first_word.in?(%w[recent last])
       ::Commands::Recent.new(option: command_opts_str)
     elsif parsable_date
       ::Commands::Date.new(date: date_str, option: last_word)

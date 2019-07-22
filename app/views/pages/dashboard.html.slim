@@ -41,10 +41,22 @@ table.table.command-table
         br
         | 1996-12-31 more
       td
-        | Providing a date returns show info, including  setlist.
+        | Sending a date returns show info, including  setlist.
         br
         | Appending the keyword "more" displays more detail.
-
+    tr
+      td.command-cell
+        | recent|last [{song}]
+      td.examples
+        | recent
+        br
+        | last Hood
+        br
+        | last blaze-on
+      td
+        | Sending the keyword `recent` or `last` returns info from the last show.
+        br
+        | Appending a song slug or partial title will return the last performance of that song.
 br
 
 h1
@@ -58,19 +70,6 @@ table.table.command-table
       th Examples
       th Description
   tbody
-    tr
-      td.command-cell
-        | recent|last|latest [{song}]
-      td[nowrap]
-        | recent
-        br
-        | last Harry Hood
-        br
-        | latest
-      td
-        | Providing the keyword `recent` returns info from the latest show.
-        br
-        | Adding a song title or slug will return the last performance of that song.
     tr
       td.command-cell
         | random [{song}]
