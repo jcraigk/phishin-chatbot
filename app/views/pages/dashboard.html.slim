@@ -28,17 +28,22 @@ table.table.command-table
   tbody
     tr
       td.command-cell
+        | help
+      td.examples
+        | help
+      td
+        | Entering the keyword "help" returns a helping friendly response.
+    tr
+      td.command-cell
         | {date} [more]
-      td[nowrap]
+      td.examples
         | Jul 31 2013
         br
-        | 1996-12-31
-        br
-        | 1996 December 31 more
+        | 1996-12-31 more
       td
-        | Providing a date returns info about the show, including setlist.
+        | Providing a date returns show info, including  setlist.
         br
-        | Adding the option "more" displays more details.
+        | Appending the keyword "more" displays more detail.
 
 br
 
@@ -53,13 +58,6 @@ table.table.command-table
       th Examples
       th Description
   tbody
-    tr
-      td.command-cell
-        | help
-      td[nowrap]
-        | help
-      td
-        | Entering the keyword `help` returns a helping friendly response.
     tr
       td.command-cell
         | recent|last|latest [{song}]

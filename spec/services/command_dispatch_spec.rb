@@ -25,6 +25,25 @@ describe CommandDispatch do
     end
   end
 
+  context 'with `help` command' do
+    let(:command_obj) { instance_spy(Commands::Help) }
+    let(:command) { 'help' }
+
+    before do
+      allow(Commands::Help).to receive(:new).and_return(command_obj)
+      allow(command_obj).to receive(:call)
+      service.call
+    end
+
+    it 'instantiates Commands::Help' do
+      expect(Commands::Help).to have_received(:new).with(no_args)
+    end
+
+    it 'calls the command object' do
+      expect(command_obj).to have_received(:call)
+    end
+  end
+
   context 'with parsable date' do
     shared_examples 'Commands::Date invocation' do
       let(:command_obj) { instance_spy(Commands::Date) }
