@@ -25,7 +25,9 @@ class CommandDispatch
   end
 
   def command_obj
-    if parsable_date
+    if command.downcase == 'help'
+      ::Commands::Help.new
+    elsif parsable_date
       ::Commands::Date.new(date: parsable_date, option: last_word)
     else
       ::Commands::Unknown.new
