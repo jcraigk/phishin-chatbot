@@ -24,4 +24,8 @@ module CommandsHelper
   def duration_readable(milliseconds, style: 'colons')
     DurationFormatter.new(milliseconds, style).call
   end
+
+  def pretty_date(date)
+    Date.parse(date).strftime('%B %e, %Y')
+  end
 end

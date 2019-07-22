@@ -102,4 +102,13 @@ RSpec.describe CommandsHelper do
       expect(mock_formatter).to have_received(:call)
     end
   end
+
+  describe '#pretty_date' do
+    let(:input) { '2019-07-06' }
+    let(:output) { 'July 6, 2019' }
+
+    it 'prettifies date' do
+      expect(helper.pretty_date(input)).to eq(output)
+    end
+  end
 end
