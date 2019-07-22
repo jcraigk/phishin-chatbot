@@ -9,7 +9,7 @@ class Commands::Help
 
     {date} [more]           Sending a date returns show info, including setlist.
                             Appending the keyword "more" displays more detail.
-                            Examples: "Jul 31 2013", "1996-12-31 more"
+                            Examples: "1996-12-31 more", "Jul 31 2013"
 
     recent|last [{song}]    Sending `recent` or `last` returns the last show.
                             A song slug or partial title may be appended.

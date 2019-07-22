@@ -4,7 +4,7 @@ a href='https://github.com/jcraigk/phishin-chatbot' Phish.in' chatbot
 ' , a frontend for the
 a> href='https://phish.in' Phish.in'
 | web service.
-
+br
 br
 
 .chat_buttons
@@ -14,10 +14,19 @@ br
   a.button.discord_btn href="https://discordapp.com/api/oauth2/authorize?permissions=2048&scope=bot&client_id=#{ENV['DISCORD_CLIENT_ID']}&response_type=code&redirect_uri=#{ENV['DISCORD_REDIRECT_URI']}"
     | Add to
     strong &nbsp;Discord
+br
 
+p.instructions Once integrated with your Slack team or Discord guild, you can talk to the bot by entering its name and then entering a command.  You must always prefix the command with the name of the bot, even while in a direct message channel.
+br
+
+p.instructions
+  ' For example, a complete command looks like this:
+  span.main-example @phishin 1995-10-31 more
+br
 br
 
 h1 Implemented Commands
+br
 
 table.table.command-table
   thead
@@ -37,9 +46,9 @@ table.table.command-table
       td.command-cell
         | {date} [more]
       td.examples
-        | Jul 31 2013
-        br
         | 1996-12-31 more
+        br
+        | Jul 31 2013
       td
         | Sending a date returns show info, including  setlist.
         br
@@ -62,6 +71,7 @@ br
 h1
  | Commands Coming Soon
  sup TM
+br
 
 table.table.command-table
   thead

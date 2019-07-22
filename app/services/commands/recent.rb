@@ -40,7 +40,7 @@ class Commands::Recent
     return if last_track.nil?
     date = last_track.show_date
     show = show_on_date(date)
-    str = "The last performance of *#{last_track.title}* was on "
+    str = "The last *#{last_track.title}* was on "
     str += "*#{pretty_date(date)}* @ *#{show.venue_name}*\n"
     str + "https://phish.in/#{date}/#{last_track.slug}"
   end
