@@ -44,6 +44,33 @@ describe CommandDispatch do
     end
   end
 
+  context 'with `recent|latest|last` command' do
+    let(:command_obj) { instance_spy(Commands::Recent) }
+    let(:command) { 'recent' }
+
+    before do
+      allow(Commands::Recent).to receive(:new).and_return(command_obj)
+      allow(command_obj).to receive(:call)
+      service.call
+    end
+
+    it 'instantiates Commands::Recent' do
+      expect(Commands::Recent).to have_received(:new).with(option: nil)
+    end
+
+    it 'calls the command object' do
+      expect(command_obj).to have_received(:call)
+    end
+
+    context 'with `{song}` option' do
+      let(:command) { 'last harry hood' }
+
+      it 'instantiates Commands::Recent' do
+        expect(Commands::Recent).to have_received(:new).with(option: 'harry hood')
+      end
+    end
+  end
+
   context 'with parsable date' do
     shared_examples 'Commands::Date invocation' do
       let(:command_obj) { instance_spy(Commands::Date) }

@@ -25,13 +25,19 @@ class CommandDispatch
   end
 
   def command_obj
-    if command.downcase == 'help'
+    if first_word == 'help'
       ::Commands::Help.new
+    elsif first_word.in?(%w[recent last latest])
+      ::Commands::Recent.new(option: command_opts_str)
     elsif parsable_date
-      ::Commands::Date.new(date: parsable_date, option: last_word)
+      ::Commands::Date.new(date: date_str, option: last_word)
     else
       ::Commands::Unknown.new
     end
+  end
+
+  def date_str
+    parsable_date.to_s
   end
 
   def parsable_date
@@ -40,7 +46,19 @@ class CommandDispatch
     false
   end
 
+  def command_opts_str
+    words.drop(1).join(' ')
+  end
+
+  def first_word
+    words.first
+  end
+
   def last_word
-    command.split(' ').last
+    words.last
+  end
+
+  def words
+    @words ||= command.split(' ').map(&:downcase)
   end
 end

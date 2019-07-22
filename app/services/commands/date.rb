@@ -6,7 +6,7 @@ class Commands::Date
 
   DEFAULT_RESPONSE = 'The banker said *"I ain\'t got that"*'
 
-  def initialize(date:, option:)
+  def initialize(date:, option: nil)
     @date = date
     @option = option
   end
@@ -20,14 +20,14 @@ class Commands::Date
   private
 
   def standard_response
-    str = "*#{pretty_date}* @ *#{data.venue_name}*\n"
+    str = "*#{pretty_date(data.date)}* @ *#{data.venue_name}*\n"
     str += web_link + "\n"
     str += "*This show is incomplete*\n" if data.incomplete
     str + horizontal_setlist
   end
 
   def detailed_response # rubocop:disable Metrics/AbcSize
-    str = "*#{pretty_date}*\n"
+    str = "*#{pretty_date(data.date)}*\n"
     str += "*Venue:* #{data.venue_name} in #{location}\n"
     str += "*This show is incomplete*\n" if data.incomplete
     str += "*Duration:* #{show_duration}\n"
@@ -113,10 +113,6 @@ class Commands::Date
 
   def location
     data.venue.location
-  end
-
-  def pretty_date
-    Date.parse(data.date).strftime('%B %e, %Y')
   end
 
   def sets
