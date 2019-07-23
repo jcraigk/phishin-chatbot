@@ -70,7 +70,7 @@ class Commands::Date
         '%2<position>d. %-40.40<title>s %5<duration>s',
         position: idx + 1,
         title: track.title,
-        duration: duration_readable(track.duration)
+        duration: readable_duration(track.duration)
       )
     end.join("\n")
   end
@@ -104,11 +104,11 @@ class Commands::Date
   end
 
   def show_duration
-    duration_readable(data.duration, style: 'letters')
+    readable_duration(data.duration, style: 'letters')
   end
 
   def duration_of_set(tracks)
-    duration_readable(tracks.map(&:duration).inject(0, &:+), style: 'letters')
+    readable_duration(tracks.map(&:duration).inject(0, &:+), style: 'letters')
   end
 
   def location

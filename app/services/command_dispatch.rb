@@ -24,11 +24,13 @@ class CommandDispatch
     @response ||= command_obj.call
   end
 
-  def command_obj
+  def command_obj # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     if first_word == 'help'
       ::Commands::Help.new
+    elsif first_word == 'random'
+      ::Commands::Random.new(option: opts_str)
     elsif first_word.in?(%w[recent last])
-      ::Commands::Recent.new(option: command_opts_str)
+      ::Commands::Recent.new(option: opts_str)
     elsif parsable_date
       ::Commands::Date.new(date: date_str, option: last_word)
     else
@@ -46,7 +48,7 @@ class CommandDispatch
     false
   end
 
-  def command_opts_str
+  def opts_str
     words.drop(1).join(' ')
   end
 

@@ -87,7 +87,7 @@ RSpec.describe CommandsHelper do
     end
   end
 
-  describe '#duration_readable' do
+  describe '#readable_duration' do
     let(:milliseconds) { 10 }
     let(:mock_formatter) { instance_spy(DurationFormatter) }
     let(:style) { 'letters' }
@@ -95,7 +95,7 @@ RSpec.describe CommandsHelper do
     before do
       allow(DurationFormatter).to receive(:new).with(milliseconds, style).and_return(mock_formatter)
       allow(mock_formatter).to receive(:call)
-      helper.duration_readable(milliseconds, style: style)
+      helper.readable_duration(milliseconds, style: style)
     end
 
     it 'calls DurationFormatter' do

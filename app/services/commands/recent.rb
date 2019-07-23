@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# TODO: Write a spec but ait until `first`, `shortest`, `longest`, etc
+# TODO: Write a spec but wait until `first`, `shortest`, `longest`, etc
 # are investigated as they will require much of the functionality here
 class Commands::Recent
   include CommandsHelper
@@ -14,11 +14,15 @@ class Commands::Recent
   end
 
   def call
-    return last_show_setlist if option.blank?
-    track_details || DEFAULT_RESPONSE
+    return last_show_setlist if option_dismissable?
+    last_track_details || DEFAULT_RESPONSE
   end
 
   private
+
+  def option_dismissable?
+    option.blank? || option == 'show'
+  end
 
   def last_show_setlist
     ::Commands::Date.new(date: last_show.date).call
@@ -32,37 +36,11 @@ class Commands::Recent
       ).first
   end
 
-  def last_track
-    track_by_song_slug || track_by_title_search
-  end
-
-  def track_details
-    return if last_track.nil?
-    date = last_track.show_date
-    show = show_on_date(date)
-    str = "The last *#{last_track.title}* was on "
-    str += "*#{pretty_date(date)}* @ *#{show.venue_name}*\n"
-    str + "https://phish.in/#{date}/#{last_track.slug}"
-  end
-
-  def show_on_date(date)
-    Phishin::Client.call("shows/#{date}")
-  end
-
-  def track_by_song_slug
-    song_by_slug(option)&.tracks&.last
-  end
-
-  def song_by_slug(slug)
-    @song_by_slug ||= Phishin::Client.call("songs/#{slug}")
-  end
-
-  def track_by_title_search
-    return if song_by_title_search.nil?
-    song_by_slug(song_by_title_search.slug)
-  end
-
-  def song_by_title_search
-    @song_by_title_search ||= Phishin::Client.call("search/#{option}").songs.first
+  def last_track_details
+    song = song_match(option)
+    return unless (tracks = song&.tracks).any?
+    
+    "The most recent *#{song.title}* took place on " \
+    "#{track_details_from_collection(tracks, tracks.size - 1)}"
   end
 end
