@@ -31,7 +31,7 @@ class Commands::Date
     str += "*Venue:* #{data.venue_name} in #{location}\n"
     str += "*This show is incomplete*\n" if data.incomplete
     str += "*Duration:* #{show_duration}\n"
-    str += "*Tags:* #{stacked_tag_names}\n" if combined_tag_names.any?
+    str += "*Tags:* #{stacked_tag_names(combined_tag_names)}\n" if combined_tag_names.any?
     str += web_link + "\n"
     str + vertical_setlist
   end
@@ -75,28 +75,12 @@ class Commands::Date
     end.join("\n")
   end
 
-  def stacked_tag_names
-    tag_counts.map do |name, count|
-      str = name
-      str += " (#{count})" if count > 1
-      str
-    end.join(', ')
-  end
-
-  def tag_counts
-    Hash[*combined_tag_names.group_by { |v| v }.flat_map { |k, v| [k, v.size] }]
-  end
-
   def web_link
     "#{CommandsHelper::BASE_PHISHIN_URL}/#{data.date}"
   end
 
   def combined_tag_names
-    (show_tag_names + track_tag_names).sort
-  end
-
-  def track_tag_names
-    data.tracks.map(&:tags).reject(&:empty?).flatten.map(&:name).sort
+    (show_tag_names + track_tag_names(data.tracks)).sort
   end
 
   def show_tag_names

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-# TODO: Write a spec but wait until `first`, `shortest`, `longest`, etc
-# are investigated as they will require much of the functionality here
+# TODO: spec
 class Commands::Recent
   include CommandsHelper
 
@@ -39,7 +38,7 @@ class Commands::Recent
   def last_track_details
     song = song_match(option)
     return unless (tracks = song&.tracks).any?
-    
+
     "The most recent *#{song.title}* took place on " \
     "#{track_details_from_collection(tracks, tracks.size - 1)}"
   end
