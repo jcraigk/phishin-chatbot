@@ -49,14 +49,35 @@ module CommandsHelper
     Phishin::Client.call("search/#{term}").songs.first
   end
 
-  # TODO: add tags
-  def track_details_from_collection(tracks, idx)
+  def track_tag_names(tracks)
+    tracks.map(&:tags).reject(&:empty?).flatten.map(&:name).sort
+  end
+
+  def stacked_tag_names(tag_names)
+    Hash[
+      *tag_names.group_by { |v| v }.flat_map { |k, v| [k, v.size] }
+    ].map do |name, count|
+      str = name
+      str += " (#{count})" if count > 1
+      str
+    end.join(', ')
+  end
+
+  def track_details_from_collection(tracks, idx) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     track = tracks[idx]
     date = track.show_date
     show = show_on_date(date)
+
     str = "*#{pretty_date(date)}* @ *#{show.venue_name}* clocking in at "
-    str += "*#{readable_duration(track.duration)}*.  "
-    str += "It's the *#{(idx + 1).ordinalize}* of *#{tracks.size}* total performances.\n"
-    str + "https://phish.in/#{date}/#{track.slug}"
+    str += "*#{readable_duration(track.duration)}*."
+    str += "  It's the *#{(idx + 1).ordinalize}* of *#{tracks.size}* total performances."
+
+    tags = track_tag_names([track])
+    if tags.any?
+      str += "\n It has the following Tag#{'s' if tags.size > 1}: "
+      str += "*#{stacked_tag_names(tags)}*."
+    end
+
+    str + "\nhttps://phish.in/#{date}/#{track.slug}"
   end
 end

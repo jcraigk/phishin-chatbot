@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+
+# TODO: specs
 class Commands::Random
   include CommandsHelper
 
