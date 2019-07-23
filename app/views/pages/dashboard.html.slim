@@ -49,6 +49,8 @@ table.table.command-table
         | 1996-12-31 more
         br
         | Jul 31 2013
+        br
+        | Jul 14
       td
         | Sending a date returns show info, including  setlist.
         br
@@ -66,6 +68,17 @@ table.table.command-table
         | Sending `recent` or `last` returns the last show.
         br
         | A song slug or partial title may be appended.
+    tr
+      td.command-cell
+        | random|rand [{song}]
+      td.examples
+        | random
+        br
+        | random Hood
+      td
+        | Sending `random` returns a random show.
+        br
+        | A song slug or partial title may be appended.
 br
 
 h1
@@ -80,14 +93,6 @@ table.table.command-table
       th Examples
       th Description
   tbody
-    tr
-      td.command-cell
-        | random [{song}]
-      td[nowrap]
-        | random
-      td
-        | Providing the keyword `random` will return a random show.
-        | Adding a song title or slug will return a random performance of that song.
     tr
       td.command-cell
         | song {song}
