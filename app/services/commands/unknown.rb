@@ -8,6 +8,6 @@ class Commands::Unknown
   ].freeze
 
   def call
-    PHRASES.sample
+    "#{PHRASES.sample}; maybe I can `help` you party down?"
   end
 end
