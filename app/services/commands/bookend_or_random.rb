@@ -75,6 +75,6 @@ class Commands::BookendOrRandom
     tracks.sort_by! { |track| track.public_send(sort_attr) }
     details = track_details_from_collection(tracks, idx.to_i)
 
-    "#{INTRO_TXT[adjective]} *#{song.title}* took place on #{details}"
+    "#{INTRO_TXT[adjective]} *#{song.title}* #{details}"
   end
 end

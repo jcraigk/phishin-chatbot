@@ -66,20 +66,21 @@ module CommandsHelper
     end.join(', ')
   end
 
-  def track_details_from_collection(tracks, idx) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+  def track_details_from_collection(tracks, idx, display_tags: true) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     track = tracks[idx]
     date = track.show_date
-    show = show_on_date(date)
     pos = tracks.sort_by(&:show_date).index { |t| t.id == track.id } + 1
 
-    str = "*#{pretty_date(date)}* @ *#{show.venue_name}* clocking in at "
-    str += "*#{readable_duration(track.duration)}*."
-    str += "  It's the *#{pos.ordinalize}* of *#{tracks.size}* total performances."
+    str = "occurred on *#{pretty_date(date)}* and lasted "
+    str += "*#{readable_duration(track.duration, style: 'letters')}*."
+    str += "  It was the *#{pos.ordinalize}* of *#{tracks.size}* total performances."
 
-    tags = track_tag_names([track])
-    if tags.any?
-      str += "\n It has the following Tag#{'s' if tags.size > 1}: "
-      str += "*#{stacked_tag_names(tags)}*."
+    if display_tags
+      tags = track_tag_names([track])
+      if tags.any?
+        str += "\n It has the following Tag#{'s' if tags.size > 1}: "
+        str += "*#{stacked_tag_names(tags)}*."
+      end
     end
 
     str + "\nhttps://phish.in/#{date}/#{track.slug}"

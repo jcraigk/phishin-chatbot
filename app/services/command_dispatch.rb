@@ -37,6 +37,8 @@ class CommandDispatch
       ::Commands::BookendOrRandom.new(adjective: :shortest, option: opts_str)
     elsif first_word == 'longest'
       ::Commands::BookendOrRandom.new(adjective: :longest, option: opts_str)
+    elsif first_word == 'jamchart'
+      ::Commands::Jamchart.new(option: opts_str)
     elsif parsable_date
       ::Commands::Date.new(date: date_str, option: last_word)
     else
