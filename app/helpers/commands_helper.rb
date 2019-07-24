@@ -30,6 +30,7 @@ module CommandsHelper
   end
 
   def show_on_date(date)
+    return if date.blank?
     Phishin::Client.call("shows/#{date}")
   end
 
@@ -38,14 +39,16 @@ module CommandsHelper
   end
 
   def song_by_slug(slug)
+    return if slug.blank?
     Phishin::Client.call("songs/#{slug}")
   end
 
   def song_by_partial_title(term)
-    song_by_slug(first_matching_song(term).slug)
+    song_by_slug(first_matching_song(term)&.slug)
   end
 
   def first_matching_song(term)
+    return if term.blank?
     Phishin::Client.call("search/#{term}").songs.first
   end
 
@@ -67,10 +70,11 @@ module CommandsHelper
     track = tracks[idx]
     date = track.show_date
     show = show_on_date(date)
+    pos = tracks.sort_by(&:show_date).index { |t| t.id == track.id } + 1
 
     str = "*#{pretty_date(date)}* @ *#{show.venue_name}* clocking in at "
     str += "*#{readable_duration(track.duration)}*."
-    str += "  It's the *#{(idx + 1).ordinalize}* of *#{tracks.size}* total performances."
+    str += "  It's the *#{pos.ordinalize}* of *#{tracks.size}* total performances."
 
     tags = track_tag_names([track])
     if tags.any?
