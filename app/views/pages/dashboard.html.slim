@@ -57,28 +57,17 @@ table.table.command-table
         | Appending the keyword "more" displays more detail.
     tr
       td.command-cell
-        | recent|last [{song}]
+        | first, last|recent, shortest, longest, random [show|{song}]
       td.examples
         | recent
         br
-        | last Hood
+        | longest Hood
         br
-        | last blaze-on
+        | random blaze-on
       td
-        | Sending `recent` or `last` returns the last show.
+        | Sending a descriptor returns the matching show.
         br
-        | A song slug or partial title may be appended.
-    tr
-      td.command-cell
-        | random|rand [{song}]
-      td.examples
-        | random
-        br
-        | random Hood
-      td
-        | Sending `random` returns a random show.
-        br
-        | A song slug or partial title may be appended.
+        | A song may be requested instead by appending a slug or partial title.
 br
 
 h1
@@ -93,15 +82,6 @@ table.table.command-table
       th Examples
       th Description
   tbody
-    tr
-      td.command-cell
-        | song {song}
-      td
-        | song Harry Hood
-        br
-        | song you-enjoy-myself
-      td.description-cell
-        | Providing the keyword `song` followed by a song title or slug returns details about the song.
     tr
       td.command-cell
         | jamchart [{song}]

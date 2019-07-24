@@ -104,6 +104,7 @@ class Commands::Date
   end
 
   def data
+    return if date.blank?
     @data ||= Phishin::Client.call("shows/#{date}")
   end
 end

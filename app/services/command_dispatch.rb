@@ -28,9 +28,15 @@ class CommandDispatch
     if first_word == 'help'
       ::Commands::Help.new
     elsif first_word == 'random'
-      ::Commands::Random.new(option: opts_str)
-    elsif first_word.in?(%w[recent last])
-      ::Commands::Recent.new(option: opts_str)
+      ::Commands::BookendOrRandom.new(adjective: :random, option: opts_str)
+    elsif first_word.in?(%w[first debut])
+      ::Commands::BookendOrRandom.new(adjective: :first, option: opts_str)
+    elsif first_word.in?(%w[last recent])
+      ::Commands::BookendOrRandom.new(adjective: :last, option: opts_str)
+    elsif first_word == 'shortest'
+      ::Commands::BookendOrRandom.new(adjective: :shortest, option: opts_str)
+    elsif first_word == 'longest'
+      ::Commands::BookendOrRandom.new(adjective: :longest, option: opts_str)
     elsif parsable_date
       ::Commands::Date.new(date: date_str, option: last_word)
     else
