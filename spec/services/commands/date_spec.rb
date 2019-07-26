@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-describe Commands::Date do
-  subject(:service) { described_class.new(date: Date.parse(date), option: option) }
+describe Commands::Date, :vcr do
+  subject(:service) { described_class.new(keyword: date, option: option) }
 
   let(:option) { nil }
 
@@ -21,78 +21,14 @@ describe Commands::Date do
 
   context 'with valid date' do
     let(:date) { '2019-07-06' }
-    let(:data) do
-      {
-        date: date,
-        duration: 9_535_713,
-        incomplete: false,
-        tags: [
-          {
-            name: 'SBD'
-          }
-        ],
-        venue: {
-          name: 'Fenway Park',
-          location: 'Boston, MA'
-        },
-        venue_name: 'Fenway Park',
-        tracks: [
-          {
-            title: 'Carini',
-            duration: 429_531,
-            set: '1',
-            tags: [
-              {
-                name: 'Banter'
-              }
-            ]
-          },
-          {
-            title: 'Possum',
-            duration: 480_235,
-            set: '1',
-            tags: [
-              {
-                name: 'Tease'
-              },
-              {
-                name: 'Tease'
-              }
-            ]
-          },
-          {
-            title: 'Set Your Soul Free',
-            duration: 786_704,
-            set: '1',
-            tags: []
-          },
-          {
-            title: 'Rise/Come Together',
-            duration: 303_856,
-            set: 'E',
-            tags: []
-          },
-          {
-            title: 'Wilson',
-            duration: 296_333,
-            set: 'E',
-            tags: []
-          }
-        ]
-      }
-    end
-    let(:data_as_openstruct) { JSON.parse(data.to_json, object_class: OpenStruct) }
     let(:expected_response) do
-      "*July  6, 2019* @ *Fenway Park*\n" \
-      "https://phish.in/2019-07-06\n" \
-      "*Set 1:* Carini, Possum, Set Your Soul Free\n" \
+      "*Jul 6, 2019* @ *Fenway Park*\n" \
+      "▶ https://phish.in/2019-07-06\n" \
+      "*Set 1:* Carini, Possum, Set Your Soul Free, Thread, Wolfman's Brother, " \
+      'Reba, Back on the Train, Mound, About to Run, Down with Disease, Simple, ' \
+      "Backwards Down the Number Line, Death Don't Hurt Very Long, 46 Days, What's the Use?, " \
+      "Mexican Cousin, Also Sprach Zarathustra, Split Open and Melt, Suzy Greenberg\n" \
       '*Encore:* Rise/Come Together, Wilson'
-    end
-
-    before do
-      allow(Phishin::Client).to(
-        receive(:call).with("shows/#{date}").and_return(data_as_openstruct)
-      )
     end
 
     include_examples 'expected response'
@@ -100,17 +36,33 @@ describe Commands::Date do
     context 'with `more` option' do
       let(:option) { 'more' }
       let(:expected_response) do
-        "*July  6, 2019*\n" \
+        "*Jul 6, 2019*\n" \
         "*Venue:* Fenway Park in Boston, MA\n" \
         "*Duration:* 2h 38m\n" \
-        "*Tags:* Banter, SBD, Tease (2)\n" \
-        "https://phish.in/2019-07-06\n" \
+        "*Tags:* Alt Lyric, Banter, Sample\n" \
+        "▶ https://phish.in/2019-07-06\n" \
         "```\n" \
-        "    Set 1                                  28m 16s\n" \
+        "    Set 1                                   2h 28m\n" \
         "    ----------------------------------------------\n" \
         " 1. Carini                                    7:09\n" \
         " 2. Possum                                    8:00\n" \
         " 3. Set Your Soul Free                       13:06\n" \
+        " 4. Thread                                    8:30\n" \
+        " 5. Wolfman's Brother                         9:15\n" \
+        " 6. Reba                                     11:02\n" \
+        " 7. Back on the Train                         7:52\n" \
+        " 8. Mound                                     6:02\n" \
+        " 9. About to Run                              6:53\n" \
+        "10. Down with Disease                        14:12\n" \
+        "11. Simple                                    8:01\n" \
+        "12. Backwards Down the Number Line            6:54\n" \
+        "13. Death Don't Hurt Very Long                3:15\n" \
+        "14. 46 Days                                   5:48\n" \
+        "15. What's the Use?                           5:51\n" \
+        "16. Mexican Cousin                            2:22\n" \
+        "17. Also Sprach Zarathustra                   6:41\n" \
+        "18. Split Open and Melt                      10:52\n" \
+        "19. Suzy Greenberg                            7:04\n" \
         "\n" \
         "    Encore                                  10m 0s\n" \
         "    ----------------------------------------------\n" \

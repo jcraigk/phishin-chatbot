@@ -9,6 +9,6 @@ describe Commands::Unknown do
   before { stub_const('Commands::Unknown::PHRASES', [phrase]) }
 
   it 'returns a random selection from its set of phrases' do
-    expect(service.call).to eq(phrase)
+    expect(service.call).to eq("#{phrase}; maybe I can `help` you party down?")
   end
 end

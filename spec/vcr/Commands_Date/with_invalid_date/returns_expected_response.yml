@@ -1,0 +1,67 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://phish.in/api/v1/shows/1980-01-01?page=1&per_page=10
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Authorization:
+      - Bearer ee7509640d3846be44a7a8a9c0f1d2182ab15a110d1eef55757a76fb3a671816e9013a4060e892164b2462fdcb0bf4d1
+      Connection:
+      - close
+      Host:
+      - phish.in
+      User-Agent:
+      - http.rb/4.1.1
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Sat, 27 Jul 2019 10:10:04 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - close
+      Set-Cookie:
+      - __cfduid=d745daa3c9767faaaad99abd36bb3fcbe1564222204; expires=Sun, 26-Jul-20
+        10:10:04 GMT; path=/; domain=.phish.in; HttpOnly
+      Vary:
+      - Accept-Encoding
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - 0b3e0899-0184-4b22-8b1c-9f7541120c82
+      X-Runtime:
+      - '0.087614'
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 4fcdd2488a03d332-LAX
+    body:
+      encoding: UTF-8
+      string: '{"success":false,"message":"Record not found"}'
+    http_version: 
+  recorded_at: Sat, 27 Jul 2019 10:10:04 GMT
+recorded_with: VCR 5.0.0

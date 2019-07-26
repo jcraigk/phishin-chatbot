@@ -12,5 +12,9 @@ module Chatbot
   class Application < Rails::Application
     config.load_defaults 5.2
     config.api_only = true
+
+    # Custom config
+    config.cache_ttl = 1.day
+    config.inactive_seconds = 5_184_000
   end
 end

@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class Commands::Unknown
+class Commands::Unknown < Commands::Base
   PHRASES = [
     "*I don't know* but I think I'll go and try dog mushing with an eskimo",
     "Don't ask me cuz *I don't know*; I just fasten my seat belt wherever I go",

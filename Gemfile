@@ -19,6 +19,7 @@ gem 'slim'
 
 group :development do
   gem 'rubocop'
+  gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
 end
@@ -37,4 +38,6 @@ group :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'timecop'
+  gem 'vcr'
+  gem 'webmock'
 end
