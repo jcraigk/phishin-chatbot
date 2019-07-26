@@ -17,7 +17,7 @@ describe CommandDispatch do
     end
 
     it 'instantiates Commands::Unknown' do
-      expect(Commands::Unknown).to have_received(:new).with(no_args)
+      expect(Commands::Unknown).to have_received(:new).with(keyword: nil, option: nil)
     end
 
     it 'calls the command object' do
@@ -36,7 +36,7 @@ describe CommandDispatch do
     end
 
     it 'instantiates Commands::Help' do
-      expect(Commands::Help).to have_received(:new).with(no_args)
+      expect(Commands::Help).to have_received(:new).with(keyword: nil, option: nil)
     end
 
     it 'calls the command object' do
@@ -44,18 +44,18 @@ describe CommandDispatch do
     end
   end
 
-  context 'with `recent|last` command' do
-    let(:command_obj) { instance_spy(Commands::Recent) }
-    let(:command) { 'recent' }
+  context 'with `jamchart` command' do
+    let(:command_obj) { instance_spy(Commands::Jamchart) }
+    let(:command) { 'jamchart' }
 
     before do
-      allow(Commands::Recent).to receive(:new).and_return(command_obj)
+      allow(Commands::Jamchart).to receive(:new).and_return(command_obj)
       allow(command_obj).to receive(:call)
       service.call
     end
 
-    it 'instantiates Commands::Recent' do
-      expect(Commands::Recent).to have_received(:new).with(option: nil)
+    it 'instantiates Commands::Jamchart' do
+      expect(Commands::Jamchart).to have_received(:new).with(keyword: nil, option: '')
     end
 
     it 'calls the command object' do
@@ -63,10 +63,10 @@ describe CommandDispatch do
     end
 
     context 'with `{song}` option' do
-      let(:command) { 'last harry hood' }
+      let(:command) { 'jamchart hood' }
 
-      it 'instantiates Commands::Recent' do
-        expect(Commands::Recent).to have_received(:new).with(option: 'harry hood')
+      it 'instantiates Commands::Jamchart with option' do
+        expect(Commands::Jamchart).to have_received(:new).with(keyword: nil, option: 'hood')
       end
     end
   end
@@ -75,9 +75,12 @@ describe CommandDispatch do
     shared_examples 'Commands::Date invocation' do
       let(:command_obj) { instance_spy(Commands::Date) }
 
-      it 'instantiates Commands::Date with expected args' do
+      it 'instantiates Commands::Date with expected args' do # rubocop:disable RSpec/ExampleLength
         expect(Commands::Date).to(
-          have_received(:new).with(date: Date.parse(command), option: command.split(' ').last)
+          have_received(:new).with(
+            keyword: Date.parse(command).to_s,
+            option: command.split(/\s+/).last
+          )
         )
       end
 

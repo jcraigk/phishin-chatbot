@@ -14,12 +14,12 @@ RSpec.describe CommandsHelper do
     end
   end
 
-  describe '#slack_to_discord' do
+  describe '#format_for_discord' do
     let(:discord_formatted) { 'Here is some **bold text**' }
     let(:slack_formatted) { 'Here is some *bold text*' }
 
     it 'returns Discord-formatted text' do
-      expect(helper.slack_to_discord(slack_formatted)).to eq(discord_formatted)
+      expect(helper.format_for_discord(slack_formatted)).to eq(discord_formatted)
     end
   end
 
@@ -105,7 +105,7 @@ RSpec.describe CommandsHelper do
 
   describe '#pretty_date' do
     let(:input) { '2019-07-06' }
-    let(:output) { 'July 6, 2019' }
+    let(:output) { 'Jul 6, 2019' }
 
     it 'prettifies date' do
       expect(helper.pretty_date(input)).to eq(output)

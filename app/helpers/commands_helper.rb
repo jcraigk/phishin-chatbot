@@ -13,7 +13,7 @@ module CommandsHelper
 
   BASE_PHISHIN_URL = 'https://phish.in'
 
-  def slack_to_discord(text)
+  def format_for_discord(text)
     text.gsub(/\*/, '**')
   end
 
@@ -26,7 +26,7 @@ module CommandsHelper
   end
 
   def pretty_date(date)
-    Date.parse(date).strftime('%B %e, %Y')
+    Date.parse(date).strftime('%b %-d, %Y')
   end
 
   def show_on_date(date)
@@ -66,23 +66,16 @@ module CommandsHelper
     end.join(', ')
   end
 
-  def track_details_from_collection(tracks, idx, display_tags: true) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
-    track = tracks[idx]
-    date = track.show_date
-    pos = tracks.sort_by(&:show_date).index { |t| t.id == track.id } + 1
+  def track_link(track)
+    "\u25B6 #{BASE_PHISHIN_URL}/#{track.show_date}/#{track.slug}"
+  end
 
-    str = "occurred on *#{pretty_date(date)}* and lasted "
-    str += "*#{readable_duration(track.duration, style: 'letters')}*."
-    str += "  It was the *#{pos.ordinalize}* of *#{tracks.size}* total performances."
+  def show_link(show)
+    "\u25B6 #{BASE_PHISHIN_URL}/#{show.date}"
+  end
 
-    if display_tags
-      tags = track_tag_names([track])
-      if tags.any?
-        str += "\n It has the following Tag#{'s' if tags.size > 1}: "
-        str += "*#{stacked_tag_names(tags)}*."
-      end
-    end
-
-    str + "\nhttps://phish.in/#{date}/#{track.slug}"
+  def simple_pluralize(count, noun)
+    return if count.zero?
+    count == 1 ? noun : noun.pluralize
   end
 end

@@ -5,8 +5,8 @@ class Team < ApplicationRecord
     discord: 1
   }
 
-  validates :remote_id, presence: true, uniqueness: { scope: :platform }
   validates :name, presence: true, uniqueness: { scope: :platform }
+  validates :remote_id, presence: true, uniqueness: { scope: :platform }
 
   after_create_commit :open_chat_connection
   after_update_commit :sync_chat_connection

@@ -16,22 +16,23 @@ br
     strong &nbsp;Discord
 br
 
-p.instructions Once integrated with your Slack team or Discord guild, you can talk to the bot by entering its name and then entering a command.  You must always prefix the command with the name of the bot, even while in a direct message channel.
-br
-
 p.instructions
+  | Once integrated with your Slack or Discord group, you can talk to the bot by mentioning its name and then entering a command.
+  br
+  | You must always mention the bot, even while in a direct message channel with it.
+  br
   ' For example, a complete command looks like this:
-  span.main-example @phishin 1995-10-31 more
+  span.main-example @phishin top 5 shows
 br
 br
 
-h1 Implemented Commands
+h1 Chat Commands
 br
 
 table.table.command-table
   thead
     tr
-      th Chat Command
+      th Command
       th Examples
       th Description
   tbody
@@ -50,22 +51,39 @@ table.table.command-table
         br
         | Jul 31 2013
         br
-        | Jul 14
+        | feb 23
       td
         | Sending a date returns show info and setlist.
         br
-        | Appending the keyword "more" displays more detail.
+        | Adding the keyword "more" displays more detail.
     tr
       td.command-cell
-        | first, last|recent, shortest, longest, random [show|{song}]
+        | {selector} [{count} {entity}]
+        br
+        span.selectors
+          | random, any
+          br
+          | first, debut
+          br
+          | last, recent
+          br
+          | shortest
+          br
+          | longest
+          br
+          | top, liked, best
       td.examples
-        | recent
+        | top 3 shows
         br
-        | longest Hood
+        | random hoods
         br
-        | random blaze-on
+        | longest track
+        br
+        | recent tweezer
       td
-        | Sending a descriptor returns the requested show or song if slug or partial title is appended.
+        | Sending a selector followed by optional count and entity ("track", "show", or partial song title) returns the requested data.  The entity may be pluralized.
+        br
+        strong
     tr
       td.command-cell
         | jamchart [{song}]
@@ -74,27 +92,4 @@ table.table.command-table
         br
         | jamchart tweezer
       td
-        | Sending `jamchart` returns a random Jamchart, optionally constrained to a specific song.
-br
-
-h1
- | Commands Coming Soon
- sup TM
-br
-
-table.table.command-table
-  thead
-    tr
-      th Chat Command
-      th Examples
-      th Description
-  tbody
-    tr
-      td.command-cell
-        | top {x} shows|tracks
-      td[nowrap]
-        | top 5 shows
-        br
-        | top 10 tracks
-      td
-        | Providing the keyword `top` followed by an integer and either `shows` or `tracks` will return the specified number of most-liked entities.
+        | Sending `jamchart` returns a random Jamchart, optionally constrained to a song.

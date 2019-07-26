@@ -32,6 +32,10 @@ body {
     .command-cell {
       width: 300px;
       font-size: 24px;
+
+      .selectors {
+        font-size: 20px;
+      }
     }
     .examples {
       white-space: nowrap;

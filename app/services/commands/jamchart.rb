@@ -1,15 +1,5 @@
 # frozen_string_literal: true
-
-# TODO: specs
-class Commands::Jamchart
-  include CommandsHelper
-
-  attr_reader :option
-
-  def initialize(option:)
-    @option = option
-  end
-
+class Commands::Jamchart < Commands::Base
   def call
     random_jamchart || default_response
   end
@@ -31,16 +21,24 @@ class Commands::Jamchart
   end
 
   def random_jamchart
-    tag = Phishin::Client.call('tags/jamcharts')
-    candidate_ids = option.blank? ? tag.track_ids : tag.track_ids & song_track_ids
     return unless candidate_ids.any?
+    track = track_by_id(candidate_ids.sample)
 
-    track = Phishin::Client.call("tracks/#{candidate_ids.sample}")
-    track_song = option.blank? ? song_match(track.song_ids.first) : requested_song
-    song_tracks = track_song.tracks
-    idx = song_tracks.index { |t| t.id == track.id }
-    details = track_details_from_collection(song_tracks, idx, display_tags: false)
+    "Here's a *Jamchart* selection: " \
+    "*#{track.title}* performed on *#{pretty_date(track.show_date)}* " \
+    "lasting *#{readable_duration(track.duration, style: 'letters')}* " \
+    "#{track_link(track)}"
+  end
 
-    "A random *Jamchart* selection of *#{track_song.title}* #{details}"
+  def track_by_id(id)
+    Phishin::Client.call("tracks/#{id}")
+  end
+
+  def tag
+    @tag ||= Phishin::Client.call('tags/jamcharts')
+  end
+
+  def candidate_ids
+    @candidate_ids ||= option.blank? ? tag.track_ids : tag.track_ids & song_track_ids
   end
 end

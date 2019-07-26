@@ -1,0 +1,154 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://phish.in/api/v1/shows/2019-07-06?page=1&per_page=10
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Authorization:
+      - Bearer ee7509640d3846be44a7a8a9c0f1d2182ab15a110d1eef55757a76fb3a671816e9013a4060e892164b2462fdcb0bf4d1
+      Connection:
+      - close
+      Host:
+      - phish.in
+      User-Agent:
+      - http.rb/4.1.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 27 Jul 2019 10:10:04 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - close
+      Set-Cookie:
+      - __cfduid=d00b44a3877bbe46ad204d9f6725528db1564222203; expires=Sun, 26-Jul-20
+        10:10:03 GMT; path=/; domain=.phish.in; HttpOnly
+      Vary:
+      - Accept-Encoding
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Etag:
+      - W/"afa14471cd945ad92f59c0763224a507"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 66cfe92d-f0ae-4f06-8e45-14414238168c
+      X-Runtime:
+      - '0.084882'
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS
+      Access-Control-Allow-Headers:
+      - DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range
+      Access-Control-Expose-Headers:
+      - Content-Length,Content-Range
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 4fcdd245ca4e1429-LAX
+    body:
+      encoding: ASCII-8BIT
+      string: '{"success":true,"total_entries":1,"total_pages":1,"page":1,"data":{"id":2002,"date":"2019-07-06","duration":9535713,"incomplete":false,"sbd":false,"remastered":false,"tags":[],"tour_id":107,"venue":{"id":244,"slug":"fenway-park","name":"Fenway
+        Park","other_names":[],"latitude":42.346674,"longitude":-71.09722,"shows_count":3,"location":"Boston,
+        MA","updated_at":"2013-03-23T02:14:04Z"},"venue_name":"Fenway Park","taper_notes":"Phish\nFenway
+        Park\nBoston, Massachusetts\n7/6/2019 \n\nSource: Schoeps CCM4V''S\u003eLunatec
+        V2\u003eSound Devices 722 (24/44.1)\nFOB/DLFC/KFC/ZFC/AARP Section C5, Row
+        8, 6 1/2'' High\nDSP: Sound Devices 722\u003eSound Forge 10.0\u003eCD Wave\u003eflac(16)\nID3
+        Tagged In Foobar 2000\nRecorded By: Z-Man\nSeeded By: Z-Man \n\nDisc I  \n\n01
+        Carini \u003e\n02 Possum \n03 Set your Soul Free \u003e\n04 Thread \n05 Wolfman''s
+        Brother\n\nDisc II \n\n01 Reba\n02 Back On The Train\n03 Mound\n04 About To
+        Run \u003e\n05 Down With Disease \u003e\n06 Simple \u003e\n07 Backwards Down
+        The Number Line \u003e\n08 Death Don''t Hurt Very Long \u003e\n09 46 Days
+        \u003e\n10 What''s The Use? Part I \u003e\n\nDisc III\n\n01 What''s The Use?
+        Part II \u003e\n02 Mexican Cousin \u003e \n03 Also Spratch Zarathustra \u003e\n04
+        Split Open And Melt \n05 Suzy Greenberg\nEncore:\n06 Rise/Come Together \n07
+        Wilson \n\nphish2019-07-06d01t01.flac:44079a420336670471460091ac4f9844\nphish2019-07-06d01t02.flac:abb36fe32f7709542be1b10c126da3dc\nphish2019-07-06d01t03.flac:e9896341412e872cb83d1fee1d112594\nphish2019-07-06d01t04.flac:beee498a8c5f44786418c15db0b40dc4\nphish2019-07-06d01t05.flac:45644dfcdd28f6f67e7adf0900a945bf\nphish2019-07-06d02t01.flac:0747e5746210ce54607dd673c0c4ec98\nphish2019-07-06d02t02.flac:4f6841b66dee292bb8fdd5b07e52c17e\nphish2019-07-06d02t03.flac:9d277bac9587d0fec1d0abc76c45eae3\nphish2019-07-06d02t04.flac:927f4385a2b9eb43a978938e2536d2ef\nphish2019-07-06d02t05.flac:739f511b27101141d6c52af82b26c83a\nphish2019-07-06d02t06.flac:dbc258a070e894671ea968b8373336bd\nphish2019-07-06d02t07.flac:8d5d6ef97c87707e5affec649cdbe1ea\nphish2019-07-06d02t08.flac:87163516953885fad7934441c47e179c\nphish2019-07-06d02t09.flac:a69400ce90bd3b05cb3b4c2f91da6ec9\nphish2019-07-06d02t10.flac:7b114220c544eac7cf1b34ea65dff1d7\nphish2019-07-06d03t01.flac:d46bfcb1d4adf4a83e35f7f599264562\nphish2019-07-06d03t02.flac:2340557bb06304e28e37754e799cac23\nphish2019-07-06d03t03.flac:836eb257fa781a91634a174aa933057d\nphish2019-07-06d03t04.flac:1cab04cc1f0f4d69f42d328855e138b7\nphish2019-07-06d03t05.flac:358e85fea4b19304d8be749e067f772a\nphish2019-07-06d03t06.flac:20f3c2ea5455bf209a1e179d40c4d7d0\nphish2019-07-06d03t07.flac:8d2e2ab1cfbafb1b335c5fac68b1d232\n\n
+        length     expanded size    cdr  WAVE problems  fmt   ratio  filename\n     7:09.37       75762668
+        B   ---   --   ---xx   flac  0.5171  phish2019-07-06d01t01.flac\n     8:00.15       84707324
+        B   ---   --   ---xx   flac  0.5045  phish2019-07-06d01t02.flac\n    13:06.50      138768044
+        B   ---   --   ---xx   flac  0.4844  phish2019-07-06d01t03.flac\n     8:30.01       89966396
+        B   ---   --   ---xx   flac  0.4790  phish2019-07-06d01t04.flac\n     9:15.16       97939676
+        B   ---   --   ---xx   flac  0.4869  phish2019-07-06d01t05.flac\n    11:02.66      116932076
+        B   ---   --   ---xx   flac  0.4502  phish2019-07-06d02t01.flac\n     7:52.69       83423132
+        B   ---   --   ---xx   flac  0.4754  phish2019-07-06d02t02.flac\n     6:02.10       63880364
+        B   ---   --   ---xx   flac  0.4893  phish2019-07-06d02t03.flac\n     6:53.11       72879116
+        B   ---   --   ---xx   flac  0.4667  phish2019-07-06d02t04.flac\n    14:12.38      150382220
+        B   ---   --   ---xx   flac  0.4930  phish2019-07-06d02t05.flac\n     8:01.01       84850796
+        B   ---   --   ---xx   flac  0.4944  phish2019-07-06d02t06.flac\n     6:54.11       73055516
+        B   ---   --   ---xx   flac  0.4917  phish2019-07-06d02t07.flac\n     3:15.15       34433324
+        B   ---   --   ---xx   flac  0.4557  phish2019-07-06d02t08.flac\n     5:48.18       61429580
+        B   ---   --   ---xx   flac  0.4926  phish2019-07-06d02t09.flac\n     2:32.02       26817548
+        B   ---   --   ---xx   flac  0.4519  phish2019-07-06d02t10.flac\n     3:19.16       35141276
+        B   ---   --   ---xx   flac  0.4000  phish2019-07-06d03t01.flac\n     2:22.11       25074716
+        B   ---   --   ---xx   flac  0.5043  phish2019-07-06d03t02.flac\n     6:40.73       70731740
+        B   ---   --   ---xx   flac  0.4967  phish2019-07-06d03t03.flac\n    10:52.32      115088108
+        B   ---   --   ---xx   flac  0.4954  phish2019-07-06d03t04.flac\n     7:04.17       74833628
+        B   ---   --   ---xx   flac  0.5169  phish2019-07-06d03t05.flac\n     5:03.61       53592716
+        B   ---   --   ---xx   flac  0.4940  phish2019-07-06d03t06.flac\n     5:40.60       60117164
+        B   ---   --   ---xx   flac  0.4887  phish2019-07-06d03t07.flac\n   159:39.30     1689807128
+        B                            0.4858  (22 files)","likes_count":6,"tracks":[{"id":33811,"show_id":2002,"show_date":"2019-07-06","title":"Carini","position":1,"duration":429531,"jam_starts_at_second":null,"set":"1","set_name":"Set
+        1","likes_count":0,"slug":"carini","tags":[],"mp3":"https://phish.in/audio/000/033/811/33811.mp3","song_ids":[135],"updated_at":"2019-07-08T02:08:29Z"},{"id":33812,"show_id":2002,"show_date":"2019-07-06","title":"Possum","position":2,"duration":480235,"jam_starts_at_second":null,"set":"1","set_name":"Set
+        1","likes_count":0,"slug":"possum","tags":[],"mp3":"https://phish.in/audio/000/033/812/33812.mp3","song_ids":[595],"updated_at":"2019-07-08T02:08:29Z"},{"id":33813,"show_id":2002,"show_date":"2019-07-06","title":"Set
+        Your Soul Free","position":3,"duration":786704,"jam_starts_at_second":null,"set":"1","set_name":"Set
+        1","likes_count":1,"slug":"set-your-soul-free","tags":[],"mp3":"https://phish.in/audio/000/033/813/33813.mp3","song_ids":[1011],"updated_at":"2019-07-08T02:08:29Z"},{"id":33814,"show_id":2002,"show_date":"2019-07-06","title":"Thread","position":4,"duration":510041,"jam_starts_at_second":null,"set":"1","set_name":"Set
+        1","likes_count":0,"slug":"thread","tags":[],"mp3":"https://phish.in/audio/000/033/814/33814.mp3","song_ids":[985],"updated_at":"2019-07-08T02:08:30Z"},{"id":33815,"show_id":2002,"show_date":"2019-07-06","title":"Wolfman''s
+        Brother","position":5,"duration":555259,"jam_starts_at_second":null,"set":"1","set_name":"Set
+        1","likes_count":2,"slug":"wolfmans-brother","tags":[],"mp3":"https://phish.in/audio/000/033/815/33815.mp3","song_ids":[870],"updated_at":"2019-07-08T02:08:30Z"},{"id":33816,"show_id":2002,"show_date":"2019-07-06","title":"Reba","position":6,"duration":662909,"jam_starts_at_second":null,"set":"1","set_name":"Set
+        1","likes_count":1,"slug":"reba","tags":[],"mp3":"https://phish.in/audio/000/033/816/33816.mp3","song_ids":[616],"updated_at":"2019-07-08T02:08:30Z"},{"id":33817,"show_id":2002,"show_date":"2019-07-06","title":"Back
+        on the Train","position":7,"duration":472947,"jam_starts_at_second":null,"set":"1","set_name":"Set
+        1","likes_count":1,"slug":"back-on-the-train","tags":[],"mp3":"https://phish.in/audio/000/033/817/33817.mp3","song_ids":[61],"updated_at":"2019-07-08T02:08:31Z"},{"id":33818,"show_id":2002,"show_date":"2019-07-06","title":"Mound","position":8,"duration":362162,"jam_starts_at_second":null,"set":"1","set_name":"Set
+        1","likes_count":1,"slug":"mound","tags":[],"mp3":"https://phish.in/audio/000/033/818/33818.mp3","song_ids":[525],"updated_at":"2019-07-08T02:08:31Z"},{"id":33819,"show_id":2002,"show_date":"2019-07-06","title":"About
+        to Run","position":9,"duration":413179,"jam_starts_at_second":null,"set":"1","set_name":"Set
+        1","likes_count":1,"slug":"about-to-run","tags":[],"mp3":"https://phish.in/audio/000/033/819/33819.mp3","song_ids":[1032],"updated_at":"2019-07-08T02:08:31Z"},{"id":33820,"show_id":2002,"show_date":"2019-07-06","title":"Down
+        with Disease","position":10,"duration":852558,"jam_starts_at_second":null,"set":"1","set_name":"Set
+        1","likes_count":1,"slug":"down-with-disease","tags":[{"id":12,"name":"Alt
+        Lyric","priority":10,"group":"Song Content","color":"#8fabd9","notes":"\"dancing
+        on my field\"","transcript":null,"starts_at_second":89,"ends_at_second":null}],"mp3":"https://phish.in/audio/000/033/820/33820.mp3","song_ids":[225],"updated_at":"2019-07-08T02:08:32Z"},{"id":33821,"show_id":2002,"show_date":"2019-07-06","title":"Simple","position":11,"duration":481045,"jam_starts_at_second":null,"set":"1","set_name":"Set
+        1","likes_count":2,"slug":"simple","tags":[],"mp3":"https://phish.in/audio/000/033/821/33821.mp3","song_ids":[688],"updated_at":"2019-07-08T02:08:32Z"},{"id":33822,"show_id":2002,"show_date":"2019-07-06","title":"Backwards
+        Down the Number Line","position":12,"duration":414198,"jam_starts_at_second":null,"set":"1","set_name":"Set
+        1","likes_count":0,"slug":"backwards-down-the-number-line","tags":[],"mp3":"https://phish.in/audio/000/033/822/33822.mp3","song_ids":[63],"updated_at":"2019-07-08T02:08:32Z"},{"id":33823,"show_id":2002,"show_date":"2019-07-06","title":"Death
+        Don''t Hurt Very Long","position":13,"duration":195239,"jam_starts_at_second":null,"set":"1","set_name":"Set
+        1","likes_count":0,"slug":"death-dont-hurt-very-long","tags":[],"mp3":"https://phish.in/audio/000/033/823/33823.mp3","song_ids":[1021],"updated_at":"2019-07-08T02:08:32Z"},{"id":33824,"show_id":2002,"show_date":"2019-07-06","title":"46
+        Days","position":14,"duration":348291,"jam_starts_at_second":null,"set":"1","set_name":"Set
+        1","likes_count":0,"slug":"46-days","tags":[],"mp3":"https://phish.in/audio/000/033/824/33824.mp3","song_ids":[4],"updated_at":"2019-07-08T02:08:33Z"},{"id":33825,"show_id":2002,"show_date":"2019-07-06","title":"What''s
+        the Use?","position":15,"duration":351321,"jam_starts_at_second":null,"set":"1","set_name":"Set
+        1","likes_count":0,"slug":"whats-the-use","tags":[],"mp3":"https://phish.in/audio/000/033/825/33825.mp3","song_ids":[842],"updated_at":"2019-07-08T02:08:33Z"},{"id":33826,"show_id":2002,"show_date":"2019-07-06","title":"Mexican
+        Cousin","position":16,"duration":142184,"jam_starts_at_second":null,"set":"1","set_name":"Set
+        1","likes_count":0,"slug":"mexican-cousin","tags":[],"mp3":"https://phish.in/audio/000/033/826/33826.mp3","song_ids":[499],"updated_at":"2019-07-08T02:08:33Z"},{"id":33827,"show_id":2002,"show_date":"2019-07-06","title":"Also
+        Sprach Zarathustra","position":17,"duration":401006,"jam_starts_at_second":null,"set":"1","set_name":"Set
+        1","likes_count":0,"slug":"also-sprach-zarathustra","tags":[],"mp3":"https://phish.in/audio/000/033/827/33827.mp3","song_ids":[28],"updated_at":"2019-07-08T02:08:33Z"},{"id":33828,"show_id":2002,"show_date":"2019-07-06","title":"Split
+        Open and Melt","position":18,"duration":652460,"jam_starts_at_second":null,"set":"1","set_name":"Set
+        1","likes_count":1,"slug":"split-open-and-melt","tags":[],"mp3":"https://phish.in/audio/000/033/828/33828.mp3","song_ids":[717],"updated_at":"2019-07-08T02:08:34Z"},{"id":33829,"show_id":2002,"show_date":"2019-07-06","title":"Suzy
+        Greenberg","position":19,"duration":424255,"jam_starts_at_second":null,"set":"1","set_name":"Set
+        1","likes_count":0,"slug":"suzy-greenberg","tags":[{"id":19,"name":"Banter","priority":17,"group":"Spoken
+        Word","color":"#d39752","notes":"Trey makes a rain pun and thanks the crowd","transcript":"TREY:
+        Hey man, let me just say before we make it, what an honor it was to be playing
+        at the home of the reigning world champions.  Thank you for having us.","starts_at_second":395,"ends_at_second":null}],"mp3":"https://phish.in/audio/000/033/829/33829.mp3","song_ids":[742],"updated_at":"2019-07-08T02:08:34Z"},{"id":33830,"show_id":2002,"show_date":"2019-07-06","title":"Rise/Come
+        Together","position":20,"duration":303856,"jam_starts_at_second":null,"set":"E","set_name":"Encore","likes_count":0,"slug":"rise-come-together","tags":[],"mp3":"https://phish.in/audio/000/033/830/33830.mp3","song_ids":[165],"updated_at":"2019-07-08T02:08:34Z"},{"id":33831,"show_id":2002,"show_date":"2019-07-06","title":"Wilson","position":21,"duration":296333,"jam_starts_at_second":null,"set":"E","set_name":"Encore","likes_count":0,"slug":"wilson","tags":[{"id":18,"name":"Sample","priority":16,"group":"Instrumentation","color":"#be8ccc","notes":"The
+        Final Hurrah (\"faceplant into rock\")","transcript":null,"starts_at_second":260,"ends_at_second":null}],"mp3":"https://phish.in/audio/000/033/831/33831.mp3","song_ids":[864],"updated_at":"2019-07-08T02:08:34Z"}],"updated_at":"2019-07-08T02:10:18Z"}}'
+    http_version: 
+  recorded_at: Sat, 27 Jul 2019 10:10:04 GMT
+recorded_with: VCR 5.0.0

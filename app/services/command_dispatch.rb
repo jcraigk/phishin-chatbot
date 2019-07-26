@@ -14,40 +14,40 @@ class CommandDispatch
   end
 
   def call
+    response = generate_response
     return response if platform == :slack
-    slack_to_discord(response)
+    format_for_discord(response)
   end
 
   private
 
-  def response
-    @response ||= command_obj.call
+  def generate_response
+    klass, keyword, option = parse_command
+    command_object = "::Commands::#{klass}".constantize.new(keyword: keyword, option: option)
+    return command_object.call if random?(keyword) # Don't cache `random` requests
+    Rails.cache.fetch("#{klass}/#{keyword}/#{option}", expires_in: Rails.configuration.cache_ttl) do
+      command_object.call
+    end
   end
 
-  def command_obj # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
-    if first_word == 'help'
-      ::Commands::Help.new
-    elsif first_word == 'random'
-      ::Commands::BookendOrRandom.new(adjective: :random, option: opts_str)
-    elsif first_word.in?(%w[first debut])
-      ::Commands::BookendOrRandom.new(adjective: :first, option: opts_str)
-    elsif first_word.in?(%w[last recent])
-      ::Commands::BookendOrRandom.new(adjective: :last, option: opts_str)
-    elsif first_word == 'shortest'
-      ::Commands::BookendOrRandom.new(adjective: :shortest, option: opts_str)
-    elsif first_word == 'longest'
-      ::Commands::BookendOrRandom.new(adjective: :longest, option: opts_str)
-    elsif first_word == 'jamchart'
-      ::Commands::Jamchart.new(option: opts_str)
-    elsif parsable_date
-      ::Commands::Date.new(date: date_str, option: last_word)
-    else
-      ::Commands::Unknown.new
-    end
+  def parse_command
+    return ['Help', nil, nil] if first_word == 'help'
+    return ['Jamchart', nil, opts_str] if first_word == 'jamchart'
+    return ['Selector', first_word, opts_str] if selector?
+    return ['Date', date_str, last_word] if parsable_date
+    ['Unknown', nil, nil]
+  end
+
+  def random?(keyword)
+    keyword.in?(%w[random jamchart])
   end
 
   def date_str
     parsable_date.to_s
+  end
+
+  def selector?
+    first_word.in?(Commands::Selector.keywords)
   end
 
   def parsable_date
@@ -69,6 +69,6 @@ class CommandDispatch
   end
 
   def words
-    @words ||= command.split(' ').map(&:downcase)
+    @words ||= command.split(/\s+/).map(&:downcase)
   end
 end
