@@ -21,7 +21,6 @@ RSpec.describe Oauth::DiscordController, type: :request do
         'client_secret': ENV['DISCORD_CLIENT_SECRET'],
         'grant_type': 'authorization_code',
         'code': code,
-        'redirect_uri': ENV['DISCORD_REDIRECT_URI'],
         'scope': 'bot'
       }
     end

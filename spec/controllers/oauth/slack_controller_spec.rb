@@ -19,8 +19,7 @@ RSpec.describe Oauth::SlackController, type: :request do
       {
         client_id: ENV['SLACK_CLIENT_ID'],
         client_secret: ENV['SLACK_CLIENT_SECRET'],
-        code: code,
-        redirect_uri: ENV['SLACK_REDIRECT_URI']
+        code: code
       }
     end
     let(:oauth_response) do
