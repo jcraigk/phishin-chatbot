@@ -27,16 +27,13 @@ PHISHIN_API_KEY=<your-key>
 
 ## OAuth Webhook Exposure
 
-You'll need to expose the OAuth callback routes to the public Internet.  We recommend using [ngrok](https://ngrok.com/) to expose your local port 3000 to public port 80.  Once you've get the tunnel setup, set the following variables in your local `.env` file:
-
-```
-DISCORD_REDIRECT_URI=https://<your-ngrok-domain>/oauth/discord
-SLACK_REDIRECT_URI=https://<your-ngrok-domain>/oauth/slack
-```
+You'll need to expose the OAuth callback routes to the public Internet.  We recommend using [ngrok](https://ngrok.com/) to expose your local port 3000 to public port 80.
 
 ## Test Bot Setup
 
 You'll need to create Slack and/or Discord bots to be used for manual testing during development.  You should name the bots something like "[Your Name] Test Bot".
+
+Setup the OAuth redirect URI on each bot to be `https://<your-ngrok-domain>/oauth/slack` or `https://<your-ngrok-domain>/oauth/discord` depending on the platform.
 
 Once your bots are created, grab the following values and place them in your local `.env` file.
 

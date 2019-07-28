@@ -26,7 +26,6 @@ class Oauth::DiscordController < ApplicationController
       'client_secret': ENV['DISCORD_CLIENT_SECRET'],
       'grant_type': 'authorization_code',
       'code': params[:code],
-      'redirect_uri': ENV['DISCORD_REDIRECT_URI'],
       'scope': 'bot'
     }
   end

@@ -19,8 +19,7 @@ class Oauth::SlackController < ApplicationController
       Slack::Web::Client.new.oauth_access(
         client_id: ENV['SLACK_CLIENT_ID'],
         client_secret: ENV['SLACK_CLIENT_SECRET'],
-        code: params[:code],
-        redirect_uri: ENV['SLACK_REDIRECT_URI']
+        code: params[:code]
       ).deep_symbolize_keys
   end
 
