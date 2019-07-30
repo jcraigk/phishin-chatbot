@@ -9,6 +9,7 @@ class Websockets::Manager
   end
 
   def start_all
+    return if nosockets?
     open_discord_socket
     open_slack_sockets
   end
@@ -39,6 +40,10 @@ class Websockets::Manager
 
   private
 
+  def nosockets?
+    Rails.env.test? || ENV['NOSOCKETS'].present?
+  end
+
   def open_slack_sockets
     Team.where(platform: :slack, active: true)
         .order(:id)
@@ -49,15 +54,13 @@ class Websockets::Manager
   end
 
   def open_slack_socket(team)
-    return if Rails.env.test? || ENV['NOSOCKETS'].present?
-
+    return if nosockets?
     Rails.logger.info("--- OPENING SOCKET for Slack / (#{team.name})")
     @sockets << OpenStruct.new(team_id: team.id, thread: Websockets::Slack.new_thread(team))
   end
 
   def open_discord_socket
-    return if Rails.env.test? || ENV['NOSOCKETS'].present?
-
+    return if nosockets?
     Rails.logger.info('--- OPENING SOCKET for Discord (all guilds)')
     @sockets << OpenStruct.new(team_id: 'discord', thread: Websockets::Discord.new_thread)
   end
