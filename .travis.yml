@@ -1,21 +1,23 @@
+dist: trusty
 language: ruby
-
-services:
-  - postgresql
-  - redis
-
-before_script:
-  - cp config/database.travis.yml config/database.yml
-  - psql -c 'create database travis_ci_test;' -U postgres
-
-cache: bundler
-
-env:
-  - NOSOCKETS=true
-
 rvm:
   - 2.6.3
-
+env:
+  - NOSOCKETS=true
+cache: bundler
+notifications:
+  email: false
+services:
+  - redis
+addons:
+  apt:
+    packages:
+      - chromium-chromedriver
 before_install:
+  - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
+  - psql -c 'create database phishin_chatbot_test;' -U postgres
   - gem update --system
   - gem install bundler
+script:
+  - bundle exec rspec
+  - bundle exec rubocop

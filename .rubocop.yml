@@ -22,6 +22,15 @@ Metrics/ClassLength:
   Max: 250
 Metrics/LineLength:
   Max: 100
+RSpec/DescribeClass:
+  Exclude:
+    - spec/features/**/*
+RSpec/ExampleLength:
+  Exclude:
+    - spec/features/**/*
+RSpec/MultipleExpectations:
+  Exclude:
+    - spec/features/**/*
 RSpec/NestedGroups:
   Max: 5
 Style/ClassAndModuleChildren:
