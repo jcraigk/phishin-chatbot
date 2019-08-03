@@ -1,6 +1,6 @@
-[![codecov](https://codecov.io/gh/jcraigk/phishin-chatbot/branch/master/graph/badge.svg)](https://codecov.io/gh/jcraigk/phishin-chatbot)
+[![Build Status](https://travis-ci.org/jcraigk/phishin-chatbot.svg?branch=master)](https://travis-ci.org/jcraigk/phishin-chatbot)
 [![Maintainability](https://api.codeclimate.com/v1/badges/278d4695252307434304/maintainability)](https://codeclimate.com/github/jcraigk/phishin-chatbot/maintainability)
-[![travis](https://travis-ci.org/jcraigk/phishin-chatbot.svg?branch=master)](https://travis-ci.org/jcraigk/phishin-chatbot)
+[![CodeCov](https://codecov.io/gh/jcraigk/phishin-chatbot/branch/master/graph/badge.svg)](https://codecov.io/gh/jcraigk/phishin-chatbot)
 
 ![Phish.in' Chatbot Logo](https://i.imgur.com/mxOqj0B.png)
 
