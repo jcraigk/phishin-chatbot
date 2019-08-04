@@ -5,7 +5,7 @@ RSpec.describe Oauth::DiscordController, type: :request do
   include Rack::Test::Methods
   include Rails.application.routes.url_helpers
 
-  describe 'GET /oauth/discord' do
+  describe 'GET /oauth/discord', :freeze_time do
     subject(:response) { get(path, params) }
 
     let(:code) { 'oauthcodexyz' }
@@ -42,12 +42,9 @@ RSpec.describe Oauth::DiscordController, type: :request do
     let(:redirect_path) { success_path(platform: :discord, team: guild_name) }
 
     before do
-      Timecop.freeze
       allow(HTTP).to receive(:post).with(oauth_url, form: oauth_params).and_return(oauth_response)
       allow(TeamRegistrar).to receive(:call)
     end
-
-    after { Timecop.return }
 
     it 'returns 302' do
       expect(response.status).to eq(302)
