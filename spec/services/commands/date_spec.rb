@@ -64,7 +64,7 @@ describe Commands::Date, :vcr do
         "18. Split Open and Melt                      10:52\n" \
         "19. Suzy Greenberg                            7:04\n" \
         "\n" \
-        "    Encore                                  10m 0s\n" \
+        "    Encore                                     10m\n" \
         "    ----------------------------------------------\n" \
         " 1. Rise/Come Together                        5:03\n" \
         " 2. Wilson                                    4:56\n" \
