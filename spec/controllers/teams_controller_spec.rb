@@ -4,20 +4,17 @@ require 'rails_helper'
 RSpec.describe TeamsController, type: :request do
   include Rack::Test::Methods
 
-  describe 'POST /teams/purge_inactive' do
+  describe 'POST /teams/purge_inactive', :freeze_time do
     subject(:response) { post('/teams/purge_inactive') }
 
     let(:inactive_team) { create(:team) }
     let(:active_team) { create(:team) }
 
     before do
-      Timecop.freeze
       allow(inactive_team).to receive(:last_event_at).and_return(Time.current - 1.month.ago)
       allow(active_team).to receive(:last_event_at).and_return(Time.current - 1.minute.ago)
       response
     end
-
-    after { Timecop.return }
 
     it { expect(response.status).to eq(204) }
 

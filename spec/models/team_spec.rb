@@ -119,14 +119,10 @@ describe Team do
     end
   end
 
-  describe 'last event time tracking' do
+  describe 'last event time tracking', :freeze_time do
     subject(:team) { create(:team) }
 
     let(:timestamp_key) { "#{team.platform}/#{team.remote_id}" }
-
-    before { Timecop.freeze }
-
-    after { Timecop.return }
 
     describe '#register_event' do
       before do
