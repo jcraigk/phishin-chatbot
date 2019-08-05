@@ -15,6 +15,8 @@ class Oauth::SlackController < ApplicationController
   private
 
   def oauth_data
+    return if params[:code].blank?
+
     @oauth_data ||=
       Slack::Web::Client.new.oauth_access(
         client_id: ENV['SLACK_CLIENT_ID'],
