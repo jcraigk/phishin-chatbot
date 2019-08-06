@@ -49,7 +49,7 @@ class Commands::Date < Commands::Base
 
   def set_title_with_duration(set, tracks)
     format(
-      "    %-25<set>s %20<duration>s\n",
+      "    %<set>-25s %<duration>20s\n",
       set: name_of_set(set),
       duration: duration_of_set(tracks)
     )
@@ -58,7 +58,7 @@ class Commands::Date < Commands::Base
   def longform_setlist(tracks)
     tracks.map.with_index do |track, idx|
       format(
-        '%2<position>d. %-40.40<title>s %5<duration>s',
+        '%<position>2d. %<title>-40.40s %<duration>5s',
         position: idx + 1,
         title: track.title,
         duration: readable_duration(track.duration)

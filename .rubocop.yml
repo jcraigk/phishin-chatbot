@@ -9,7 +9,6 @@ AllCops:
     - bin/*
     - db/**/*
     - vendor/**/*
-  DisplayCopNames: true
 Documentation:
   Enabled: false
 Layout/EmptyLineAfterGuardClause:
@@ -17,7 +16,8 @@ Layout/EmptyLineAfterGuardClause:
 Layout/EmptyLineAfterMagicComment:
   Enabled: false
 Metrics/BlockLength:
-  Max: 150
+  Exclude:
+    - spec/**/*
 Metrics/ClassLength:
   Max: 250
 Metrics/LineLength:
@@ -32,13 +32,13 @@ RSpec/MultipleExpectations:
   Exclude:
     - spec/features/**/*
 RSpec/NestedGroups:
-  Max: 5
+  Max: 4
 Style/ClassAndModuleChildren:
   Enabled: false
 Style/AsciiComments:
   Enabled: false
 
+# https://github.com/rubocop-hq/rubocop/issues/7264
 Rails/HttpPositionalArguments:
-  Enabled: false
-Lint/FormatParameterMismatch:
-  Enabled: false
+  Exclude:
+    - spec/controllers/**/*

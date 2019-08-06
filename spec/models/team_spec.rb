@@ -48,28 +48,30 @@ describe Team do
         include_examples 'opens websocket'
       end
 
-      describe 'when updating' do
+      context 'when updating and active is not changed' do
         subject(:team) { create(:team, platform: platform) }
 
-        context 'when active is not changed' do
-          before { team.update(name: 'New name') }
+        before { team.update(name: 'New name') }
 
-          it 'does not call SocketManager#remove' do
-            expect(SocketManager).not_to have_received(:remove)
-          end
+        it 'does not call SocketManager#remove' do
+          expect(SocketManager).not_to have_received(:remove)
         end
+      end
 
-        context 'when active is changed to true' do
-          before { team.update(active: true) }
+      context 'when updating and active is changed to true' do
+        subject(:team) { create(:team, platform: platform) }
 
-          include_examples 'opens websocket'
-        end
+        before { team.update(active: true) }
 
-        context 'when active is changed to false' do
-          before { team.disable }
+        include_examples 'opens websocket'
+      end
 
-          include_examples 'closes websocket'
-        end
+      context 'when updating and active is changed to false' do
+        subject(:team) { create(:team, platform: platform) }
+
+        before { team.disable }
+
+        include_examples 'closes websocket'
       end
 
       describe 'when destroying' do
@@ -99,14 +101,12 @@ describe Team do
         end
       end
 
-      describe 'when updating' do
+      context 'when updating and active is changed to false' do
         subject(:team) { create(:team, platform: platform) }
 
-        context 'when active is changed to false' do
-          before { team.disable }
+        before { team.disable }
 
-          include_examples 'leaves guild'
-        end
+        include_examples 'leaves guild'
       end
 
       describe 'when destroying' do
