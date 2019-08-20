@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+module Websockets; end
+
 class Websockets::Manager
   attr_reader :sockets
 
