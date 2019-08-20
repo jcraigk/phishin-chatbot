@@ -16,5 +16,7 @@ module Chatbot
     # Custom config
     config.cache_ttl = 1.day
     config.inactive_seconds = 5_184_000
+
+    config.hosts << 'chatbot.phish.in'
   end
 end
