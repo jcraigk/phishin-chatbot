@@ -36,5 +36,5 @@ Rails.application.configure do
   logger.formatter = config.log_formatter
   config.logger = ActiveSupport::TaggedLogging.new(logger)
 
-  config.hosts << Rails.application.credentials.oauth_callback_host
+  config.hosts << ENV['OAUTH_CALLBACK_HOST'] if ENV['OAUTH_CALLBACK_HOST']
 end

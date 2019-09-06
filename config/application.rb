@@ -8,6 +8,8 @@ require 'active_record/railtie'
 
 Bundler.require(*Rails.groups)
 
+Dotenv::Railtie.load # Load dotenv values
+
 module Chatbot
   class Application < Rails::Application
     config.load_defaults 5.2
