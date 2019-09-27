@@ -8,8 +8,7 @@ ENV APP_NAME=${APP_NAME} \
 
 RUN apt-get update -qq && \
     apt-get install -y build-essential libpq-dev nodejs memcached && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get clean
 
 # Bundle install, copy app
 WORKDIR $INSTALL_PATH
