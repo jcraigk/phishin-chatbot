@@ -31,7 +31,7 @@ PHISHIN_API_KEY=<your-key>
 You'll need to expose the OAuth callback routes to the public Internet.  We recommend using [ngrok](https://ngrok.com/) to expose your local port 3000 to public port 80.  Once you have your external address, place it in `.env`:
 
 ```
-OAUTH_CALLBACK_HOST=<your-host>
+WEB_HOST=<your-web-address>
 ```
 
 ## Test Bot Setup
