@@ -17,14 +17,12 @@ Rails.application.configure do
   # Run rails dev:cache to toggle caching.
   if Rails.root.join('tmp', 'caching-dev.txt').exist?
     config.action_controller.perform_caching = true
-
     config.cache_store = :memory_store
     config.public_file_server.headers = {
       'Cache-Control' => "public, max-age=#{2.days.to_i}"
     }
   else
     config.action_controller.perform_caching = false
-
     config.cache_store = :null_store
   end
 
@@ -36,5 +34,5 @@ Rails.application.configure do
   logger.formatter = config.log_formatter
   config.logger = ActiveSupport::TaggedLogging.new(logger)
 
-  config.hosts << ENV['OAUTH_CALLBACK_HOST'] if ENV['OAUTH_CALLBACK_HOST']
+  config.hosts << ENV['WEB_HOST'] if ENV['WEB_HOST']
 end
