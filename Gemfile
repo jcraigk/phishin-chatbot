@@ -2,7 +2,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.3'
+ruby '2.6.5'
 
 gem 'async-websocket', '~> 0.8.0' # https://github.com/slack-ruby/slack-ruby-client/issues/272
 gem 'discordrb'
