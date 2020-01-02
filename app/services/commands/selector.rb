@@ -57,7 +57,7 @@ class Commands::Selector < Commands::Base
     @count = [MAX_COUNT, count].min
   end
 
-  def extract_filters # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/LineLength, Metrics/MethodLength, Metrics/PerceivedComplexity
+  def extract_filters # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
     return [1, :show] if words.none?
 
     if keyword_specified?

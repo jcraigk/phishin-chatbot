@@ -4,24 +4,22 @@ require:
   - rubocop-rspec
 
 AllCops:
-  TargetRubyVersion: 2.6.5
+  TargetRubyVersion: 2.7.0
   Exclude:
     - bin/*
     - db/**/*
     - vendor/**/*
-Documentation:
-  Enabled: false
 Layout/EmptyLineAfterGuardClause:
   Enabled: false
 Layout/EmptyLineAfterMagicComment:
   Enabled: false
+Layout/LineLength:
+  Max: 100
 Metrics/BlockLength:
   Exclude:
     - spec/**/*
 Metrics/ClassLength:
   Max: 250
-Metrics/LineLength:
-  Max: 100
 RSpec/DescribeClass:
   Exclude:
     - spec/features/**/*
@@ -36,6 +34,8 @@ RSpec/NestedGroups:
 Style/ClassAndModuleChildren:
   Enabled: false
 Style/AsciiComments:
+  Enabled: false
+Style/Documentation:
   Enabled: false
 
 # https://github.com/rubocop-hq/rubocop/issues/7264

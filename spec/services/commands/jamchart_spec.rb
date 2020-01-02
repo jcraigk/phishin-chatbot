@@ -36,7 +36,7 @@ describe Commands::Jamchart, :vcr do
     end
 
     before do
-      allow_any_instance_of(Array).to receive(:sample).and_return(12_729) # rubocop: disable RSpec/AnyInstance, Metrics/LineLength
+      allow_any_instance_of(Array).to receive(:sample).and_return(12_729) # rubocop: disable RSpec/AnyInstance
     end
 
     include_examples 'expected response'
