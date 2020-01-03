@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dokku": {
-      "predeploy": "rails db:migrate && rake assets:precompile"
+      "predeploy": "bin/rails db:migrate && bin/rails assets:precompile"
     }
   }
 }
