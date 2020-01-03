@@ -11,6 +11,12 @@ clean :
 	docker image prune
 	docker volume prune
 
+cleanforce :
+	docker-compose down
+	docker-compose rm
+	docker image prune -f
+	docker volume prune -f
+
 services :
 	docker-compose up -d pg redis
 

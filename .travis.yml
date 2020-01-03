@@ -2,8 +2,6 @@ dist: trusty
 language: ruby
 rvm:
   - 2.7.0
-env:
-  - NOSOCKETS=true
 cache: bundler
 notifications:
   email: false

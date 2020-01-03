@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class CreateTeams < ActiveRecord::Migration[5.2]
+class CreateTeams < ActiveRecord::Migration[6.0]
   def change
     create_table :teams, force: true do |t|
       t.integer :platform, null: false, default: 0
