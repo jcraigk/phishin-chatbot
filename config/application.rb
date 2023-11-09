@@ -12,7 +12,7 @@ Dotenv::Railtie.load # Load dotenv values
 
 module Chatbot
   class Application < Rails::Application
-    config.load_defaults 5.2
+    config.load_defaults 7.1
     config.api_only = true
 
     # Custom config

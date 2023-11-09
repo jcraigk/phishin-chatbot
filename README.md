@@ -8,7 +8,7 @@ The Phish.in' Chatbot is another way to interact with the [Phish.in' API](https:
 
 Currently, Slack and Discord are supported.  Other platforms may be supported in the future.
 
-The production instance of this chatbot is hosted at [chatbot.phish.in](https://chatbot.phish.in).
+There are currently no public instances of this chatbot but feel free to host one yourself!
 
 Join the [Discord](https://discord.gg/KZWFsNN) to discuss development.
 
