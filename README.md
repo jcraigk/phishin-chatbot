@@ -1,8 +1,6 @@
-[![Build Status](https://travis-ci.org/jcraigk/phishin-chatbot.svg?branch=master)](https://travis-ci.org/jcraigk/phishin-chatbot)
-[![Maintainability](https://api.codeclimate.com/v1/badges/278d4695252307434304/maintainability)](https://codeclimate.com/github/jcraigk/phishin-chatbot/maintainability)
-[![CodeCov](https://codecov.io/gh/jcraigk/phishin-chatbot/branch/master/graph/badge.svg)](https://codecov.io/gh/jcraigk/phishin-chatbot)
+**THIS PROJECT IS LEGACY - RUN AT YOUR OWN DISCRETION**
 
-![Phish.in' Chatbot Logo](https://i.imgur.com/mxOqj0B.png)
+See the recommended [Discord Bot](https://github.com/jcraigk/phishin-discord)
 
 The Phish.in' Chatbot is another way to interact with the [Phish.in' API](https://phish.in/api-docs), which is also an [open source project](https://github.com/jcraigk/phishin).
 
