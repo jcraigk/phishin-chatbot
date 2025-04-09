@@ -1,6 +1,9 @@
 **THIS PROJECT IS LEGACY - RUN AT YOUR OWN DISCRETION**
 
-See the recommended [Discord Bot](https://github.com/jcraigk/phishin-discord)
+See the modern replacement [Discord Bot](https://github.com/jcraigk/phishin-discord)
+
+
+# Legacy Chatbot
 
 The Phish.in' Chatbot is another way to interact with the [Phish.in' API](https://phish.in/api-docs), which is also an [open source project](https://github.com/jcraigk/phishin).
 
